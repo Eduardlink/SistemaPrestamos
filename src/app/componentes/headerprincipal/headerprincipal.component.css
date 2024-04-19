@@ -1,0 +1,43 @@
+.header {
+    background-color: #274C5B;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+    margin-right: 50px;
+}
+
+.nav {
+    margin-left: auto; /* Alinea el menú a la derecha */
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul li {
+    display: inline;
+    margin-left: 20px; /* Ajusta el espacio entre los enlaces según tus preferencias */
+}
+
+.nav ul li:first-child {
+    margin-left: 0; /* Elimina el margen izquierdo del primer enlace */
+}
+
+.nav ul li a.button {
+    color: white; /* Cambia el color del texto del botón según tus preferencias */
+    background-color: #018753; /* Cambia el color de fondo del botón */
+    padding: 8px 16px; /* Ajusta el espacio interno del botón según tus preferencias */
+    border-radius: 4px; /* Añade esquinas redondeadas al botón */
+    text-decoration: none;
+}
+
+.nav ul li a.button:hover {
+    background-color: #016339; /* Cambia el color de fondo del botón al pasar el ratón sobre él */
+}

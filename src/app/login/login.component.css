@@ -1,0 +1,108 @@
+.container {
+    background-image: url("../../assets/fondo.svg");
+    height: calc(100vh - 159.2px);
+    width: 100vw;
+    background-size: cover;
+    background-repeat: none;
+    position:   relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    position: relative;
+    /* margin: 100px 500px; */
+    /* box-sizing: border-box; */
+    
+}
+
+.portada {
+    background-image: url("../../assets/portada.png");
+    height: 60vh;
+    width: auto;
+    border-radius: 15px;
+    background-size: cover;
+    background-repeat: none;
+
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 20px;
+
+}
+
+.left-section {
+    margin: 20px;
+}
+
+.top-section {
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+
+form {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+}
+
+button {
+    background-color: #01AE67;
+    color: white;
+    padding: 10px 20px;
+    border: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+
+}
+
+button:hover {
+    background-color: #018753;
+}
+
+@media (max-width: 992px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        margin: 100px 50px;
+    }
+
+    .portada {
+        display: none;
+    }
+
+    .right-section {
+        margin: 0;
+    }
+
+    .left-section {
+        margin: 0;
+    }
+}

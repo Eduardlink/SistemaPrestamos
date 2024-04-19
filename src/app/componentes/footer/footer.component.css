@@ -1,0 +1,11 @@
+.footer {
+    background-color: #274C5B;
+    color: white;
+    padding: 5px 0; /* Ajusta el relleno según tus necesidades */
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; /* Añade esta línea para hacer el texto en negrita */
+    position: fixed;
+    bottom: 0px; /* Ajusta la distancia desde la parte inferior */
+    width: 100%;
+}
