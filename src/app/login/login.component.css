@@ -1,5 +1,4 @@
 .container {
-    background-image: url("../../assets/fondo.svg");
     height: calc(100vh - 159.2px);
     width: 100vw;
     background-size: cover;
@@ -25,7 +24,6 @@
 }
 
 .portada {
-    background-image: url("../../assets/portada.png");
     height: 60vh;
     width: auto;
     border-radius: 15px;

@@ -11,8 +11,13 @@ import { ComponentesComponent } from './componentes/componentes.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderprincipalComponent } from './componentes/headerprincipal/headerprincipal.component';
+import { TiposPrestamosComponent } from './tipos-prestamos/tipos-prestamos.component';
+import { HeaderegistroComponent } from './componentes/headeregistro/headeregistro.component';
+import { InversionesComponent } from './inversiones/inversiones.component';
+import { PrestamosComponent } from './prestamos/prestamos.component';
+import { HeadeperfilComponent } from './componentes/headeperfil/headeperfil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +28,18 @@ import { HeaderprincipalComponent } from './componentes/headerprincipal/headerpr
     ComponentesComponent,
     HeaderComponent,
     FooterComponent,
-    HeaderprincipalComponent
+    HeaderprincipalComponent,
+    TiposPrestamosComponent,
+    HeaderegistroComponent,
+    InversionesComponent,
+    PrestamosComponent,
+    HeadeperfilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule
 
 
   ],

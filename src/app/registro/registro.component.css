@@ -1,0 +1,49 @@
+.container {
+    height: calc(100vh - 159.2px); /* Ajusta la altura según tu diseño */
+    width: 100vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Añadido para alinear los elementos en columna */
+    font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto al formulario */
+}
+
+h2 {
+    margin-bottom: 20px; /* Añadido espacio inferior para separar el encabezado del formulario */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 5px; /* Espacio entre las etiquetas y los campos de entrada */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto a los campos de entrada */
+}
+
+button {
+    background-color: #01AE67;
+    color: white;
+    padding: 10px 20px;
+    border: none; /* Elimina el borde */
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #018753;
+}
