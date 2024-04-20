@@ -1,34 +1,93 @@
 <app-headeregistro></app-headeregistro>
+<div class="wrapper">
+    <div class="body">
+        <h3>Registrar Usuario</h3>
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
+            <label>Usuario</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" [(ngModel)]="contrasenia" class="form-control" placeholder="Ingrese password">
+            <label>Contraseña</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese password de nuevo">
+            <label>Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese password de nuevo">
+            <label>Apellido</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="correo" class="form-control" placeholder="Ingrese password de nuevo">
+            <label>Correo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese password de nuevo">
+            <label>Telefono</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select [(ngModel)]="rol" class="form-select">
+                <option value="Admin">Admin</option>
+                <option value="Usuario">Usuario</option>
+            </select>
+            <label>Rol</label>
+        </div>
+        <div class="d-grid gap-2 mb-3">
+            <button type="button" (click)="addRegistro()" class="btn btn-primary btn-lg">Registrarse</button>
+        </div>
 
-<div class="container">
-    <h2>Registro</h2>
-    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" formControlName="usuario" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" formControlName="contraseña" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" formControlName="nombre" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" formControlName="apellido" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" formControlName="correo" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" formControlName="telefono" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
-    </form>
+    </div>
+
 </div>
 
+
+
+
 <app-footer></app-footer>
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+            <div class="modal-header p-4">
+                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro de Banco</h1>
+            </div>
+            <div class="modal-body p-4">
+                <div class="mb-1">
+                    <label for="idBanco" class="form-label">ID Banco:</label>
+                    <input type="text" class="form-control" id="idBanco" [(ngModel)]="idBanco" name="idBanco">
+                </div>
+                <div class="mb-3">
+                    <label for="nombreB" class="form-label">Nombre Banco:</label>
+                    <input type="text" class="form-control" id="nombreB" [(ngModel)]="nombreB" name="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="logo" class="form-label">Logo:</label>
+                    <input type="text" class="form-control" id="logo" [(ngModel)]="logo" name="logo">
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección:</label>
+                    <input type="text" class="form-control" id="direccion" [(ngModel)]="direccion" name="direccion">
+                </div>
+                <div class="mb-3">
+                    <label for="rolB" class="form-label">Rol:</label>
+                    <input type="text" class="form-control" id="rolB" [(ngModel)]="rolB" name="rol">
+                </div>
+                <div class="mb-3">
+                    <label for="idAdministrador" class="form-label">ID Administrador:</label>
+                    <input type="text" class="form-control" id="idAdministrador" [(ngModel)]="id_Administrador"
+                        name="idAdministrador">
+                </div>
+            </div>
+
+            <div class="modal-footer p-4">
+                <!-- <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button> -->
+
+
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

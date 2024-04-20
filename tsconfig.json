@@ -3,8 +3,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "moment": ["node_modules/moment/moment.d.ts"]
+      "moment": [
+        "node_modules/moment/moment.d.ts"
+      ]
     },
+    "types": [
+      "jquery"
+    ],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

@@ -1,18 +1,18 @@
 .container {
-    height: calc(100vh - 159.2px); /* Ajusta la altura según tu diseño */
-    width: 100vw;
+    height: calc(100vh - 159.2px);
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Añadido para alinear los elementos en columna */
-    font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto al formulario */
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
 }
 
 h2 {
-    margin-bottom: 20px; /* Añadido espacio inferior para separar el encabezado del formulario */
+    margin-bottom: 20px;
 }
 
 .form-group {
@@ -20,30 +20,40 @@ h2 {
 }
 
 label {
-    margin-bottom: 5px; /* Espacio entre las etiquetas y los campos de entrada */
+    margin-bottom: 5px;
+    display: block;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="tel"] {
-    width: 100%;
+    width: 500px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 50px;
-    font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto a los campos de entrada */
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    max-width: 500px;
+}
+
+.form-group input[type="radio"] {
+    margin-right: 10px;
 }
 
 button {
     background-color: #01AE67;
     color: white;
     padding: 10px 20px;
-    border: none; /* Elimina el borde */
-    border-radius: 50px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     width: 100%;
 }
 
 button:hover {
     background-color: #018753;
+}
+.custom-modal-size {
+    max-width: 550px;
 }

@@ -20,6 +20,9 @@ import { PrestamosComponent } from './prestamos/prestamos.component';
 import { HeadeperfilComponent } from './componentes/headeperfil/headeperfil.component';
 import { FrancesComponent } from './componentes/frances/frances.component';
 import { AlemanComponent } from './componentes/aleman/aleman.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +45,15 @@ import { AlemanComponent } from './componentes/aleman/aleman.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
-
-
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
