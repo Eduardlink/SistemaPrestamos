@@ -1,19 +1,26 @@
 <header class="header">
     <img class="logo" src="../../assets/logo2.png" alt="Logo">
-    <nav class="nav">
-        <ul>
-            <li><a routerLink="/perfil" class="button">Perfil</a></li>
-        </ul>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid justify-content-center"> <!-- Agregamos la clase justify-content-center -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a (click)="emitirCambioPantalla('pagos')" class="button nav-link">Sistema de Prestamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="emitirCambioPantalla('inversiones')" class="button nav-link">Sistema de Inversiones</a>
+                    </li>
+                </ul>
+                <nav class="nav">
+                    <ul>
+                        <li><a routerLink="/perfil" class="button">Perfil</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </nav>
+    
 </header>
 
-<nav class="navbar">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a (click)="emitirCambioPantalla('pagos')" class="button">Sistema de Prestamos</a>
-        </li>
-        <li class="nav-item">
-            <a (click)="emitirCambioPantalla('inversiones')" class="button">Sistema de Inversiones</a>
-        </li>
-    </ul>
-</nav>
+

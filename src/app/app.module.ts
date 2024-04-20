@@ -18,6 +18,8 @@ import { HeaderegistroComponent } from './componentes/headeregistro/headeregistr
 import { InversionesComponent } from './inversiones/inversiones.component';
 import { PrestamosComponent } from './prestamos/prestamos.component';
 import { HeadeperfilComponent } from './componentes/headeperfil/headeperfil.component';
+import { FrancesComponent } from './componentes/frances/frances.component';
+import { AlemanComponent } from './componentes/aleman/aleman.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { HeadeperfilComponent } from './componentes/headeperfil/headeperfil.comp
     HeaderegistroComponent,
     InversionesComponent,
     PrestamosComponent,
-    HeadeperfilComponent
+    HeadeperfilComponent,
+    FrancesComponent,
+    AlemanComponent
   ],
   imports: [
     BrowserModule,

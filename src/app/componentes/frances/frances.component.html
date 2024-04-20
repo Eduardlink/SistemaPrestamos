@@ -1,0 +1,146 @@
+<div class="grid-container">
+    <div class="formulario">
+        <div>
+            <select [(ngModel)]="tipoPrestamo">
+                <option value="vivienda_publica">Vivienda de interés público</option>
+                <option value="vivienda_social">Vivienda de interés social</option>
+                <option value="educacion_superior">Educación superior</option>
+                <option value="preciso">Preciso</option>
+                <option value="linea_abierta">Linea abierta</option>
+                <option value="hipotecario_vivienda">Hipotecario vivienda</option>
+            </select>
+        </div>
+
+        <div *ngIf="tipoPrestamo">
+            <div *ngIf="tipoPrestamo === 'vivienda_publica' || tipoPrestamo === 'hipotecario_vivienda'">
+                <label for="costoVivienda">¿Cuánto cuesta la vivienda?</label>
+                <input type="number" id="costoVivienda" [(ngModel)]="costoVivienda" min="79952">
+            </div>
+
+            <label for="montoPrestamo">¿Cuánto dinero necesitas que te prestemos?</label>
+            <input type="number" id="montoPrestamo" [(ngModel)]="montoPrestamo" min="500">
+
+            <label for="plazo">¿En cuanto tiempo quieres pagarlo?</label>
+            <input type="number" id="plazo" [(ngModel)]="plazo">
+
+            <label for="metodoPagoIntereses">¿Como quieres pagar tus intereses?</label>
+            <select id="metodoPagoIntereses" [(ngModel)]="metodoPagoIntereses">
+                <option value="frances">Método Francés</option>
+                <option value="aleman">Método Alemán</option>
+            </select>
+
+            <button class="btn btn-primary" (click)="simularPrestamo()">Simular</button>
+        </div>
+    </div>
+
+    <div class="informacion">
+        <div class="info-box">
+            <h3>Tus pagos mensuales serán</h3>
+            <p>Capital: ${{ pagoCapital.toFixed(2) }}</p>
+            <p>Interés: ${{ pagoInteres.toFixed(2) }}</p>
+            <p>Seguro: ${{ pagoSeguro.toFixed(2) }}</p>
+            <p>Durante {{ duracionMeses }} meses ({{ (duracionMeses / 12).toFixed(1) }} años)</p>
+            <p>Con una tasa de interés referencial {{ tasaReferencial.toFixed(2) }}%</p>
+        </div>
+
+        <div class="credit-details">
+            <h4>Detalle de tu crédito</h4>
+            <p>Capital: ${{ capitalTotal.toFixed(2) }}</p>
+            <p>Total de interés: ${{ totalInteres.toFixed(2) }}</p>
+            <p>Total seguro de desgravamen: ${{ totalSeguroDesgravamen.toFixed(2) }}</p>
+            <p>*Valores referenciales, no son considerados como una oferta formal de préstamo. La oferta definitiva está
+                sujeta al cumplimiento de las condiciones y políticas referentes a capacidad de pago.</p>
+            <!-- Botón para abrir el modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver
+                tabla de amortización</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="staticBackdropLabel">Tabla de amortización</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <!-- Primera columna -->
+                <div class="col-md-6">
+                    <h6>Producto:</h6>
+                    <p>Educación superior</p>
+                    <h6>Plazo (meses):</h6>
+                    <p>12</p>
+                    <h6>Tasa de interés nominal:</h6>
+                    <p>9%</p>
+                    <h6>Tasa de interes efectiva anual:</h6>
+                    <p>9.38%</p>
+                </div>
+                <!-- Segunda columna -->
+                <div class="col-md-6">
+                    <h6>Capital:</h6>
+                    <p>$4.975</p>
+                    <h6>Total de interés:</h6>
+                    <p>$247,71</p>
+                    <h6>Total seguro de desgravamen:</h6>
+                    <p>$46,51</p>
+                </div>
+                <!-- Contenido de la tabla de amortización -->
+                <table class="table col-md-12 mt-4">
+                    <thead>
+                        <tr>
+                            <th>Cuotas</th>
+                            <th>Fecha de pago</th>
+                            <th>Capital</th>
+                            <th>Interés</th>
+                            <th>Seguros desg.</th>
+                            <th>Seguro Incendios/Vehiculo</th>
+                            <th>Valor de la cuota</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2024-05-20</td>
+                            <td>396.64</td>
+                            <td>37.5</td>
+                            <td>7.04</td>
+                            <td>0.0</td>
+                            <td>441.19</td>
+                            <td>4603.36</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2024-05-20</td>
+                            <td>396.64</td>
+                            <td>37.5</td>
+                            <td>7.04</td>
+                            <td>0.0</td>
+                            <td>441.19</td>
+                            <td>4603.36</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2024-05-20</td>
+                            <td>396.64</td>
+                            <td>37.5</td>
+                            <td>7.04</td>
+                            <td>0.0</td>
+                            <td>441.19</td>
+                            <td>4603.36</td>
+                        </tr>
+                        <!-- Agrega las demás filas de la tabla aquí -->
+                    </tbody>
+                </table>
+                <!-- Fin del contenido de la tabla de amortización -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <a href="#" class="btn btn-primary">Descargar tabla</a>
+            </div>
+        </div>
+    </div>
+</div>
+

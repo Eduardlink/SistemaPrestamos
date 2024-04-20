@@ -1,0 +1,103 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.formulario {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.informacion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilos para los cuadros de información y detalles del crédito */
+.info-box,
+.credit-details {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+/* Estilos para los títulos de los cuadros */
+.info-box h3,
+.credit-details h4 {
+    margin-top: 0;
+}
+
+/* Estilos para los párrafos dentro de los cuadros */
+.info-box p,
+.credit-details p {
+    margin: 5px 0;
+}
+
+/* Estilos para el botón de ver tabla de amortización */
+.btn-view-amortization {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-view-amortization:hover {
+    background-color: #0056b3;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.formulario {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario div {
+    margin-bottom: 10px;
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilos para los inputs y select del formulario */
+input[type="number"],
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón del formulario */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

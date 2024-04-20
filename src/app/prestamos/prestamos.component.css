@@ -1,0 +1,9 @@
+.container {
+    display: grid;
+    place-items: center;
+}
+
+.content {
+    text-align: center;
+    margin-top: 1vh;
+}
