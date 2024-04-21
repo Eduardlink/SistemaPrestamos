@@ -1,11 +1,19 @@
-<app-headerprincipal (cambiarPantalla)="cambiarPantalla($event)"></app-headerprincipal>
+<app-headerprincipaladmin (cambiarPantalla)="cambiarPantalla($event)"></app-headerprincipaladmin>
 
-<ng-container *ngIf="pantallaActual === 'pagos'; else inversiones">
+<ng-container *ngIf="pantallaActual === 'pagos'">
     <app-prestamos></app-prestamos>
 </ng-container>
 
-<ng-template #inversiones>
+<ng-container *ngIf="pantallaActual === 'inversiones'">
     <app-inversiones></app-inversiones>
-</ng-template>
+</ng-container>
+
+<ng-container *ngIf="pantallaActual === 'bancos'">
+    <app-bancos></app-bancos>
+</ng-container>
+
+<ng-container *ngIf="pantallaActual === 'perfil'">
+    <app-perfil></app-perfil>
+</ng-container>
 
 <app-footer></app-footer>

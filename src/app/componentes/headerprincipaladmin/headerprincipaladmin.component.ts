@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-headerprincipal',
-  templateUrl: './headerprincipal.component.html',
-  styleUrls: ['./headerprincipal.component.css']
+  selector: 'app-headerprincipaladmin',
+  templateUrl: './headerprincipaladmin.component.html',
+  styleUrls: ['./headerprincipaladmin.component.css']
 })
-export class HeaderprincipalComponent {
+export class HeaderprincipaladminComponent {
   @Output() cambiarPantalla = new EventEmitter<string>();
 
   emitirCambioPantalla(pantalla: string) {
     this.cambiarPantalla.emit(pantalla);
   }
 }
+

@@ -6,6 +6,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { TiposPrestamosComponent } from './tipos-prestamos/tipos-prestamos.component';
 import { InversionesComponent } from './inversiones/inversiones.component';
+import { BancosComponent } from './bancos/bancos.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:"prestamos",
     component: InversionesComponent
+  },
+  {
+    path:"bancos",
+    component: BancosComponent
   }
 ];
 

@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
+import { HeaderprincipaladminComponent } from './componentes/headerprincipaladmin/headerprincipaladmin.component';
+import { BancosComponent } from './bancos/bancos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { Router, RouterModule } from '@angular/router';
     PrestamosComponent,
     HeadeperfilComponent,
     FrancesComponent,
-    AlemanComponent
+    AlemanComponent,
+    HeaderprincipaladminComponent,
+    BancosComponent
   ],
   imports: [
     BrowserModule,
