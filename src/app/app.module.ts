@@ -23,6 +23,7 @@ import { AlemanComponent } from './componentes/aleman/aleman.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { Router, RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
