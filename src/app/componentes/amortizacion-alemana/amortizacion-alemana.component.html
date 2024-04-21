@@ -1,0 +1,24 @@
+<!-- amortizacion-alemana.component.html -->
+<div *ngIf="amortizacionAlemana.length > 0">
+  <h2>Tabla de Amortización (Sistema Alemán)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Periodo</th>
+        <th>Cuota</th>
+        <th>Interés</th>
+        <th>Capital</th>
+        <th>Saldo Restante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of amortizacionAlemana">
+        <td>{{ pago.periodo }}</td>
+        <td>{{ pago.cuota | currency }}</td>
+        <td>{{ pago.interes | currency }}</td>
+        <td>{{ pago.capital | currency }}</td>
+        <td>{{ pago.saldoRestante | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

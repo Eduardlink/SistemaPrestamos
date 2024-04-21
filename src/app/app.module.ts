@@ -26,6 +26,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
 import { HeaderprincipaladminComponent } from './componentes/headerprincipaladmin/headerprincipaladmin.component';
 import { BancosComponent } from './bancos/bancos.component';
+import { AmortizacionAlemanaComponent } from './componentes/amortizacion-alemana/amortizacion-alemana.component';
+import { AmortizacionFrancesaComponent } from './componentes/amortizacion-francesa/amortizacion-francesa.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,9 @@ import { BancosComponent } from './bancos/bancos.component';
     FrancesComponent,
     AlemanComponent,
     HeaderprincipaladminComponent,
-    BancosComponent
+    BancosComponent,
+    AmortizacionAlemanaComponent,
+    AmortizacionFrancesaComponent
   ],
   imports: [
     BrowserModule,
