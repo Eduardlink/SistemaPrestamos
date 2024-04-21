@@ -12,7 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent implements OnInit{
+export class RegistroComponent implements OnInit {
+  adminSelected: boolean = false;
 
   usuario: string = '';
   contrasenia: string = '';
@@ -41,11 +42,19 @@ export class RegistroComponent implements OnInit{
 
   addRegistro() {
 
-    /* if(this.usuario == '' || this.contrasenia == '' || this.nombre == '' || this.apellido == '' || this.correo == '' || this.telefono == '' || this.rol == ''){
+    if (this.rol === 'Admin') {
+      const modal = document.getElementById('exampleModalToggle');
+      if (modal) {
+        modal.classList.add('show');
+        modal.style.display = 'block';
+        modal.setAttribute('aria-modal', 'true');
+      }
+    }
+
+    if (this.usuario == '' || this.contrasenia == '' || this.nombre == '' || this.apellido == '' || this.correo == '' || this.telefono == '' || this.rol == '') {
       this.toastr.error('Por favor, complete todos los campos para registrar un usuario', 'Error');
       return;
-      } */
-
+    }
     const registro: Registro = {
       usuario: this.usuario,
       contrasenia: this.contrasenia,
@@ -62,8 +71,6 @@ export class RegistroComponent implements OnInit{
       this.toastr.error('El correo no es valido', 'Error');
       return;
     } */
-    
-
     this._registroService.signIn(registro).subscribe({
       next: (v) => {
         this.toastr.success(`El usuario ${this.usuario} fue registrado con exito`, 'Usuario Registrado');
@@ -74,8 +81,17 @@ export class RegistroComponent implements OnInit{
         this.toastr.error('Error al registrar el usuario', 'Error');
       }
     });
+  }
 
+ 
 
+  closeModal() {
+    const modal = document.getElementById('exampleModalToggle');
+    if (modal) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-modal', 'false');
+    }
   }
 
 

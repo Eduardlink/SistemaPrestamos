@@ -7,85 +7,64 @@
             <label>Usuario</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" [(ngModel)]="contrasenia" class="form-control" placeholder="Ingrese password">
+            <input type="password" [(ngModel)]="contrasenia" class="form-control" placeholder="Ingrese contraseña">
             <label>Contraseña</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese password de nuevo">
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese nombre">
             <label>Nombre</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese password de nuevo">
+            <input type="text" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese apellido">
             <label>Apellido</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="correo" class="form-control" placeholder="Ingrese password de nuevo">
+            <input type="text" [(ngModel)]="correo" class="form-control" placeholder="Ingrese correo">
             <label>Correo</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese password de nuevo">
-            <label>Telefono</label>
+            <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese teléfono">
+            <label>Teléfono</label>
         </div>
-        <div class="form-floating mb-3">
-            <select [(ngModel)]="rol" class="form-select">
-                <option value="Admin">Admin</option>
-                <option value="Usuario">Usuario</option>
-            </select>
-            <label>Rol</label>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Admin" id="rolAdmin">
+            <label class="form-check-label" for="rolAdmin">Admin</label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Usuario" id="rolUsuario">
+            <label class="form-check-label" for="rolUsuario">Usuario</label>
         </div>
         <div class="d-grid gap-2 mb-3">
             <button type="button" (click)="addRegistro()" class="btn btn-primary btn-lg">Registrarse</button>
         </div>
-
+        
     </div>
-
 </div>
-
-
-
 
 <app-footer></app-footer>
 
-<!-- Bootstrap modal -->
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-    tabindex="-1">
+<div class="modal fade" id="exampleModalToggle" [class.show]="adminSelected" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
             <div class="modal-header p-4">
                 <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro de Banco</h1>
             </div>
-            <div class="modal-body p-4">
-                <div class="mb-1">
-                    <label for="idBanco" class="form-label">ID Banco:</label>
-                    <input type="text" class="form-control" id="idBanco" [(ngModel)]="idBanco" name="idBanco">
+            <div class="body">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
+                    <label>Nombre</label>
                 </div>
-                <div class="mb-3">
-                    <label for="nombreB" class="form-label">Nombre Banco:</label>
-                    <input type="text" class="form-control" id="nombreB" [(ngModel)]="nombreB" name="nombre">
+                <div class="form-floating mb-3">
+                    <input type="password" [(ngModel)]="contrasenia" class="form-control" placeholder="Ingrese contraseña">
+                    <label>Logo</label>
                 </div>
-                <div class="mb-3">
-                    <label for="logo" class="form-label">Logo:</label>
-                    <input type="text" class="form-control" id="logo" [(ngModel)]="logo" name="logo">
-                </div>
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" [(ngModel)]="direccion" name="direccion">
-                </div>
-                <div class="mb-3">
-                    <label for="rolB" class="form-label">Rol:</label>
-                    <input type="text" class="form-control" id="rolB" [(ngModel)]="rolB" name="rol">
-                </div>
-                <div class="mb-3">
-                    <label for="idAdministrador" class="form-label">ID Administrador:</label>
-                    <input type="text" class="form-control" id="idAdministrador" [(ngModel)]="id_Administrador"
-                        name="idAdministrador">
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese nombre">
+                    <label>Direccion</label>
                 </div>
             </div>
-
             <div class="modal-footer p-4">
-                <!-- <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button> -->
-
-
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
                 <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
