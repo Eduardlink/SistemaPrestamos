@@ -18,6 +18,7 @@ export class PrestamosComponent implements OnInit {
   montoSolicitado: number | undefined;
   plazoMeses: number | undefined;
   interesAnual: number | undefined;
+  interesAnualPorcentaje: number | undefined;
   tipoAmortizacion: string | undefined;
 
   constructor(
@@ -50,6 +51,8 @@ export class PrestamosComponent implements OnInit {
           // Al seleccionar un banco, establecemos el interés anual del primer préstamo como valor predeterminado
           if (this.prestamos.length > 0) {
             this.interesAnual = parseFloat(this.prestamos[0].tasa_interes);
+            this.interesAnualPorcentaje = this.interesAnual * 100;
+            this.interesAnualPorcentaje = parseFloat(this.interesAnualPorcentaje.toFixed(2));
           }
         });
     }
