@@ -122,7 +122,7 @@ export class RegistroComponent implements OnInit {
       next: (v) => {
         this.toastr.success(`El banco ${this.nombreB} fue registrado con éxito`, 'Banco Registrado');
         console.log(banco);
-        this.router.navigate(['/login']);
+          
       },
       error: (e: HttpErrorResponse) => {
         this.toastr.error('Error al registrar el banco', 'Error');
