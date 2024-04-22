@@ -17,6 +17,13 @@ export class RegistroService {
     this.myApiUrl = 'usuarios';
   }
 
+  getUsuarios(userId: number): Observable<Registro> {
+    const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;
+    return this.http.get<Registro>(url);
+  }
+  
+  
+
   signIn(user: Registro): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl, user);
   }
@@ -24,5 +31,11 @@ export class RegistroService {
   login(user: Registro): Observable<string> {
     return this.http.post<string>(this.myAppUrl + this.myApiUrl + '/login', user);
   }
+
+  updatePerfil(userId: number, user: Registro): Observable<any> {
+    return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${userId}`, user);
+  }
+  
+  
 
 }
