@@ -1,1 +1,39 @@
-<p>INVERSIONES</p>
+<div class="container">
+    <h2>Formulario de Inversión</h2>
+    <form (ngSubmit)="submitForm()">
+      <div>
+        <label for="banco">Selecciona un banco:</label>
+        <select id="banco" name="banco" [(ngModel)]="selectedBancoId" required>
+          <option value="">Selecciona un banco...</option>
+          <option *ngFor="let banco of bancos" [value]="banco.id_Banco">{{ banco.nombre }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="monto">Monto a Invertir:</label>
+        <input type="number" id="monto" name="monto" [(ngModel)]="montoInvertir" required>
+      </div>
+      <div>
+        <label for="plazo">Plazo:</label>
+        <select id="plazo" name="plazo" [(ngModel)]="tipoPlazo" required>
+          <option value="">Selecciona el plazo...</option>
+          <option value="diario">Diario</option>
+          <option value="mensual">Mensual</option>
+          <option value="anual">Anual</option>
+        </select>
+      </div>
+      <div>
+        <label for="cantidadPlazos">Cantidad de Plazos:</label>
+        <input type="number" id="cantidadPlazos" name="cantidadPlazos" [(ngModel)]="cantidadPlazos" required>
+      </div>
+      <button type="submit">Invertir</button>
+    </form>
+  
+    <div *ngIf="valorFinal !== undefined">
+      <h3>Detalle de la Inversión</h3>
+      <div>
+        <p>Valor Final de la Inversión: {{ valorFinal | currency }}</p>
+        <p>Tasa de Interés Utilizada: {{ tasaInteres }}</p>
+      </div>
+    </div>
+  </div>
+  
