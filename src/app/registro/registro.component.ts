@@ -1,10 +1,12 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 
 import { Registro } from '../interfaces/registro';
 import { ToastrService } from 'ngx-toastr';
 import { RegistroService } from '../servicios/registro.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { BancoService } from '../servicios/banco.service';
+import { Banco } from '../interfaces/banco';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +16,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegistroComponent implements OnInit {
   adminSelected: boolean = false;
+  idClienteRegistrado!: number;
 
+  id_Cliente: number = 0;
   usuario: string = '';
   contrasenia: string = '';
   nombre: string = '';
@@ -24,15 +28,16 @@ export class RegistroComponent implements OnInit {
   rol: string = '';
 
 
-  idBanco!: string;
+  id_Banco!: number;
   nombreB!: string;
   logo!: string;
   direccion!: string;
-  rolB!: string;
-  id_Administrador!: string;
+  id_Administrador!: number;
 
   constructor(private toastr: ToastrService,
-    private _registroService: RegistroService) {
+    private _registroService: RegistroService,
+    private _bancosService: BancoService,
+    private router: Router) {
 
   }
 
@@ -72,9 +77,9 @@ export class RegistroComponent implements OnInit {
       return;
     } */
     this._registroService.signIn(registro).subscribe({
-      next: (v) => {
+      next: (response: any) => {
         this.toastr.success(`El usuario ${this.usuario} fue registrado con exito`, 'Usuario Registrado');
-
+        this.idClienteRegistrado = response.id;
         console.log(registro);
       },
       error: (e: HttpErrorResponse) => {
@@ -83,7 +88,6 @@ export class RegistroComponent implements OnInit {
     });
   }
 
- 
 
   closeModal() {
     const modal = document.getElementById('exampleModalToggle');
@@ -94,6 +98,37 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+  addBanco() {
+    // Verificar que se haya registrado un cliente antes de agregar un banco
+    if (this.idClienteRegistrado === 0) {
+      this.toastr.error('Por favor, registra un usuario antes de agregar un banco', 'Error');
+      return;
+    }
+
+    if (this.nombreB == '' || this.logo == '' || this.direccion == '') {
+      this.toastr.error('Por favor, complete todos los campos para registrar un banco', 'Error');
+      return;
+    }
+
+    const banco: Banco = {
+      id_Banco: 0, // ¿Cómo se obtiene el ID del banco? Este valor debería ser autogenerado por la base de datos
+      nombre: this.nombreB,
+      logo: this.logo,
+      direccion: this.direccion,
+      id_Administrador: this.idClienteRegistrado // Establecer el ID del cliente
+    };
+
+    this._bancosService.postBancos(banco).subscribe({
+      next: (v) => {
+        this.toastr.success(`El banco ${this.nombreB} fue registrado con éxito`, 'Banco Registrado');
+        console.log(banco);
+        this.router.navigate(['/login']);
+      },
+      error: (e: HttpErrorResponse) => {
+        this.toastr.error('Error al registrar el banco', 'Error');
+      }
+    });
+  }
 
 
 

@@ -9,13 +9,19 @@ import { environment } from '../../environments/enviroment';
 })
 export class BancoService {
   private myAppUrl: string;
+  private myApiUrl: string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
+    this.myApiUrl = 'bancos';
   }
 
   getBancos(): Observable<Banco[]> {
-    const url = `${this.myAppUrl}bancos`;
+    const url = `${this.myAppUrl}${this.myApiUrl}`;
     return this.http.get<Banco[]>(url);
+  }
+
+  postBancos(user: Banco): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl, user);
   }
 }

@@ -51,21 +51,21 @@
             </div>
             <div class="body">
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
+                    <input type="text" [(ngModel)]="nombreB" class="form-control" placeholder="Ingrese usuario">
                     <label>Nombre</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" [(ngModel)]="contrasenia" class="form-control" placeholder="Ingrese contraseña">
+                    <input type="text" [(ngModel)]="logo" class="form-control" placeholder="Ingrese contraseña">
                     <label>Logo</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese nombre">
+                    <input type="text" [(ngModel)]="direccion" class="form-control" placeholder="Ingrese nombre">
                     <label>Direccion</label>
                 </div>
             </div>
             <div class="modal-footer p-4">
                 <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="addBanco()">Guardar</button>
             </div>
         </div>
     </div>
