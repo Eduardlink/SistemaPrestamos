@@ -29,5 +29,9 @@ export class BancoService {
     const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;
     return this.http.get<Banco>(url);
   }
+
+  updateBanco(userId: number, banco: Banco): Observable<any> {
+    return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${userId}`, banco);
+  }
   
 }
