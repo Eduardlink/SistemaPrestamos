@@ -9,6 +9,7 @@ import { environment } from '../../environments/enviroment';
 })
 export class PrestamoService {
   private myAppUrl: string;
+  private myApiUrl: string = 'prestamos';
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
@@ -22,5 +23,10 @@ export class PrestamoService {
   getPrestamosByBancoId(idBanco: number): Observable<Prestamo[]> {
     const url = `${this.myAppUrl}prestamos/banco/${idBanco}`;
     return this.http.get<Prestamo[]>(url);
+  }
+
+  getPrestamoByClienteId(userId: number): Observable<Prestamo> {
+    const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;
+    return this.http.get<Prestamo>(url);
   }
 }

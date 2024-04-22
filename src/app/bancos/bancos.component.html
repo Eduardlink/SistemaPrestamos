@@ -13,6 +13,26 @@
             <input type="text" [(ngModel)]="direccion" class="form-control" placeholder="Ingrese apellido">
             <label>Direccion</label>
         </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="tipo" class="form-control" placeholder="Ingrese apellido">
+            <label>Tipo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="tasa" class="form-control" placeholder="Ingrese apellido">
+            <label>Tasa Interes</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="monto_min" class="form-control" placeholder="Ingrese apellido">
+            <label>Monto Minimo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="monto_max" class="form-control" placeholder="Ingrese apellido">
+            <label>Monto Maximo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="detalle" class="form-control" placeholder="Ingrese apellido">
+            <label>Detalles</label>
+        </div>
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
         </div>
