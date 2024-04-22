@@ -1,6 +1,7 @@
-.container {
-    height: calc(100vh - 159.2px);
-    width: 100%;
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../assets/fondo_login.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -9,6 +10,29 @@
     align-items: center;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
+}
+.wrapper::before {
+    content: ""; /* Necesario para que el pseudo-elemento aparezca */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.59); /* Color negro con opacidad del 50% */
+}
+
+.registro{
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2 {
@@ -24,18 +48,34 @@ label {
     display: block;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"] {
+.registro input[type="text"],
+.registro input[type="password"],
+.registro input[type="email"],
+.registro input[type="tel"] {
     width: 500px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     max-width: 500px;
 }
+.puta input[type="text"],
+.puta input[type="password"],
+.puta input[type="email"],
+.puta input[type="tel"] {
+    width: 500px;
+    padding: 10px;
+    border: none;
+    background-color: rgba(231, 28, 28, 0.1);
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    max-width: 500px;
+}
+
+
 
 .form-group input[type="radio"] {
     margin-right: 10px;
@@ -57,3 +97,8 @@ button:hover {
 .custom-modal-size {
     max-width: 550px;
 }
+
+.modal-content{
+    background-color: black;
+}
+

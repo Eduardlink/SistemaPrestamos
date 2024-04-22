@@ -1,106 +1,56 @@
-.container {
-    height: calc(100vh - 159.2px);
+.contenedor{
     width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/fondo_login.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: none;
-    position:   relative;
     display: flex;
     justify-content: center;
     align-items: center;
-
+}
+.contenedor::before {
+    content: ""; /* Necesario para que el pseudo-elemento aparezca */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.59); /* Color negro con opacidad del 50% */
 }
 
-.login-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 30px;
-    align-items: center;
-    justify-content: center;
-    width: 50vw;
-    position: relative;
-    /* margin: 100px 500px; */
-    /* box-sizing: border-box; */
-    
+.login-container{
+    backdrop-filter: blur(15px);
+    padding: 50px;
 }
-
-.portada {
-    height: 60vh;
-    width: auto;
-    border-radius: 15px;
-    background-size: cover;
-    background-repeat: none;
-
-}
-
-.right-section {
+.top-section{
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    margin: 20px;
-
 }
 
-.left-section {
-    margin: 20px;
-}
-
-.top-section {
-    text-align: center;
-    margin-bottom: 10px;
-
-}
-
-
-form {
-    display: inline-block;
-    text-align: center;
+input{
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
     width: 100%;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-input[type="email"],
-input[type="password"] {
-    width: 100%;
+    height: 50px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-}
-
-button {
-    background-color: #01AE67;
     color: white;
-    padding: 10px 20px;
-    border: 50px;
-    border-radius: 50px;
-    cursor: pointer;
+}
+
+button{
+    background-color: rgb(2, 131, 24);
+    border: none;
     width: 100%;
-
+    height: 50px;
+    border-radius: 10px;
+    color: white;
 }
 
-button:hover {
-    background-color: #018753;
+button:hover{
+    background-color: rgb(2, 97, 18);
 }
 
-@media (max-width: 992px) {
-    .login-container {
-        grid-template-columns: 1fr;
-        margin: 100px 50px;
-    }
-
-    .portada {
-        display: none;
-    }
-
-    .right-section {
-        margin: 0;
-    }
-
-    .left-section {
-        margin: 0;
-    }
+a{
+    color: rgb(5, 177, 34);
 }

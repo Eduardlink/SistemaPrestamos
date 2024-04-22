@@ -1,6 +1,6 @@
-<app-headeregistro></app-headeregistro>
+
 <div class="wrapper">
-    <div class="body">
+    <div class="body registro">
         <h3>Registrar Usuario</h3>
         <div class="form-floating mb-3 mt-3">
             <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
@@ -41,15 +41,15 @@
     </div>
 </div>
 
-<app-footer></app-footer>
+
 
 <div class="modal fade" id="exampleModalToggle" [class.show]="adminSelected" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
-            <div class="modal-header p-4">
+            <div class="p-4">
                 <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro de Banco</h1>
             </div>
-            <div class="body">
+            <div class="body puta">
                 <div class="form-floating mb-3 mt-3">
                     <input type="text" [(ngModel)]="nombreB" class="form-control" placeholder="Ingrese usuario">
                     <label>Nombre</label>
@@ -59,12 +59,11 @@
                     <label>Logo</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="direccion" class="form-control" placeholder="Ingrese nombre">
+                    <input type="text" [(ngModel)]="direccion" class="direccion form-control" placeholder="Ingrese nombre">
                     <label>Direccion</label>
                 </div>
             </div>
-            <div class="modal-footer p-4">
-                <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+            <div class=" p-4">
                 <button type="button" class="btn btn-primary" (click)="addBanco()">Guardar</button>
             </div>
         </div>
