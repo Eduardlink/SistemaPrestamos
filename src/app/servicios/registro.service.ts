@@ -22,7 +22,6 @@ export class RegistroService {
     return this.http.get<Registro>(url);
   }
   
-  
 
   signIn(user: Registro): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl, user);

@@ -1,1 +1,21 @@
-<p>BANCOS</p>
+<div class="wrapper">
+    <div class="body">
+        <h3>Modificar Información</h3>
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese usuario">
+            <label>Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="logo" class="form-control" placeholder="Ingrese nombre">
+            <label>Logo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="direccion" class="form-control" placeholder="Ingrese apellido">
+            <label>Direccion</label>
+        </div>
+        <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-success btn-lg">Modificar</button>
+        </div>
+        
+    </div>
+</div>

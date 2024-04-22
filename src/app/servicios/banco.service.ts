@@ -24,4 +24,10 @@ export class BancoService {
   postBancos(user: Banco): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl, user);
   }
+
+  getBancoByClienteId(userId: number): Observable<Banco> {
+    const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;
+    return this.http.get<Banco>(url);
+  }
+  
 }

@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
         // Almacenar el rol del usuario en localStorage o sessionStorage
         localStorage.setItem('rolUsuario', data.rol);
         localStorage.setItem('idCliente', data.id_Cliente);
-
         // Redirigir a la página principal
         this.router.navigate(['/principal']);
 
