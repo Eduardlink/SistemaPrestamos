@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-principal',
@@ -8,7 +8,12 @@ import { Component} from '@angular/core';
 export class PrincipalComponent {
   pantallaActual: string = 'pagos'; // Por defecto, muestra la pantalla de Sistema de Pagos
 
+
   cambiarPantalla(pantalla: string) {
     this.pantallaActual = pantalla;
+  }
+
+  getRolUsuario(): string {
+    return localStorage.getItem('rolUsuario') || 'Usuario';
   }
 }

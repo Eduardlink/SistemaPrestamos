@@ -45,10 +45,19 @@ export class LoginComponent implements OnInit {
       rol: this.rol
     }
 
-    this._registroService.login(registro).subscribe(data => {
-      this.toastr.success('Bienvenido', 'Exito');
-      this.router.navigate(['/principal']);
-      console.log(data);
+    this._registroService.login(registro).subscribe((data: any) => {
+      if (data && data.rol) {
+        // Almacenar el rol del usuario en localStorage o sessionStorage
+        localStorage.setItem('rolUsuario', data.rol);
+
+        // Redirigir a la página principal
+        this.router.navigate(['/principal']);
+
+        // Mostrar un mensaje de éxito
+        this.toastr.success(`Bienvenido, ${data.usuario}`, 'Exito');
+      } else {
+        this.toastr.error('El correo o la contraseña son incorrectos', 'Error');
+      }
     }, (error: HttpErrorResponse) => {
       this.toastr.error('El correo o la contraseña son incorrectos', 'Error');
     });

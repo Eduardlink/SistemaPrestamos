@@ -1,4 +1,10 @@
-<app-headerprincipaladmin (cambiarPantalla)="cambiarPantalla($event)"></app-headerprincipaladmin>
+<ng-container *ngIf="getRolUsuario() === 'Usuario'">
+    <app-headerprincipal (cambiarPantalla)="cambiarPantalla($event)"></app-headerprincipal>
+</ng-container>
+
+<ng-container *ngIf="getRolUsuario() === 'Admin'">
+    <app-headerprincipaladmin (cambiarPantalla)="cambiarPantalla($event)"></app-headerprincipaladmin>
+</ng-container>
 
 <ng-container *ngIf="pantallaActual === 'pagos'">
     <app-prestamos></app-prestamos>
@@ -15,7 +21,5 @@
 <ng-container *ngIf="pantallaActual === 'perfil'">
     <app-perfil></app-perfil>
 </ng-container>
-<!--
-    <app-footer></app-footer>
 
--->
+<app-footer></app-footer>
