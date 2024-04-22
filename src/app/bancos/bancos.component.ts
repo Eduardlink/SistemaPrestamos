@@ -45,7 +45,7 @@ export class BancosComponent {
         this.toastr.error('Ocurrió un error al obtener la información del banco', 'Error');
       }
     );
-    
+
     this._prestamoService.getPrestamoByClienteId(this.idCliente).subscribe(
       (prestamos: Prestamo) => {
         // Asigna los datos obtenidos a las variables correspondientes
@@ -87,5 +87,26 @@ export class BancosComponent {
         this.toastr.error('Ocurrió un error al actualizar la información del banco', 'Error');
       }
     );
+
+    const prestamo: Prestamo = {
+      id_Banco: 0,
+      tipo: this.tipo,
+      monto_min: this.monto_min,
+      monto_max: this.monto_max,
+      tasa_interes: this.tasa,
+      detalles: this.detalle,
+      id_Prestamo: 0
+    };
+
+    this._prestamoService.updatePrestamos(this.idCliente,prestamo).subscribe(
+      (data: any) => {
+        this.toastr.success('Préstamos actualizados correctamente', 'Éxito');
+      },
+      (error) => {
+        this.toastr.error('Ocurrió un error al actualizar los préstamos', 'Error');
+      }
+    );
   }
+
+
 }

@@ -29,4 +29,8 @@ export class PrestamoService {
     const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;
     return this.http.get<Prestamo>(url);
   }
+
+  updatePrestamos(userId: number, banco: Prestamo): Observable<any> {
+    return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${userId}`, banco);
+  }
 }
