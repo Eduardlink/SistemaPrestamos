@@ -35,6 +35,18 @@ export class BancosComponent {
   interes_mensual: number = 0;
   interes_anual: number = 0;
 
+
+  //Modal Prestamo
+  tipoM: string = '';
+  tasaM: string = '';
+  montoMin: string = '';
+  detalleM: string = '';
+  montoMax: string = '';
+  //Modal Inversiones
+  interesD: number = 0;
+  interesM: number = 0;
+  interesA: number = 0;
+  //Modal Cobros
   nombreCobro: string = '';
   montoCobro: string = '';
 
@@ -201,10 +213,10 @@ export class BancosComponent {
       modal.classList.add('show');
       modal.style.display = 'block';
       modal.setAttribute('aria-modal', 'true');
-  
+
     }
   }
-  
+
   closeModalInversiones() {
     const modal = document.getElementById('exampleModalToggle2');
     if (modal) {
@@ -215,22 +227,22 @@ export class BancosComponent {
   }
 
 
-openModalCobros() {
-  const modal = document.getElementById('exampleModalToggle3');
-  if (modal) {
-    modal.classList.add('show');
-    modal.style.display = 'block';
-    modal.setAttribute('aria-modal', 'true');
+  openModalCobros() {
+    const modal = document.getElementById('exampleModalToggle3');
+    if (modal) {
+      modal.classList.add('show');
+      modal.style.display = 'block';
+      modal.setAttribute('aria-modal', 'true');
 
+    }
   }
-}
 
-closeModalCobros() {
-  const modal = document.getElementById('exampleModalToggle3');
-  if (modal) {
-    modal.classList.remove('show');
-    modal.style.display = 'none';
-    modal.setAttribute('aria-modal', 'false');
+  closeModalCobros() {
+    const modal = document.getElementById('exampleModalToggle3');
+    if (modal) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-modal', 'false');
+    }
   }
-}
 }
