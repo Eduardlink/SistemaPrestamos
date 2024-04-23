@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { RegistroService } from '../servicios/registro.service';
 import { PrestamoService } from '../servicios/prestamo.service';
 import { Prestamo } from '../interfaces/prestamo';
+import { InversionService } from '../servicios/inversion.service';
+import { Inversion } from '../interfaces/inversion';
 
 @Component({
   selector: 'app-bancos',
@@ -26,11 +28,16 @@ export class BancosComponent {
   tasa: string = '';
   detalle: string = '';
 
+  interes_diario: number = 0;
+  interes_mensual: number = 0;
+  interes_anual: number = 0;
+
 
   constructor(private _bancoService: BancoService,
     private router: Router,
     private toastr: ToastrService,
-    private _prestamoService: PrestamoService) { }
+    private _prestamoService: PrestamoService,
+    private _inversionesService: InversionService) { }
 
   ngOnInit(): void {
     this.idCliente = Number(localStorage.getItem('idCliente'));
@@ -58,6 +65,17 @@ export class BancosComponent {
       },
       (error) => {
         this.toastr.error('Ocurrió un error al obtener la información de préstamos', 'Error');
+      }
+    );
+
+    this._inversionesService.getInversionByClienteId(this.idCliente).subscribe(
+      (data: Inversion) => {
+        this.interes_diario = data.interes_Diario;
+        this.interes_mensual = data.interes_Mensual;
+        this.interes_anual = data.interes_Anual;
+      },
+      (error) => {
+        this.toastr.error('Ocurrió un error al obtener la información de Inversiones', 'Error');
       }
     );
 
@@ -98,7 +116,7 @@ export class BancosComponent {
       id_Prestamo: 0
     };
 
-    this._prestamoService.updatePrestamos(this.idCliente,prestamo).subscribe(
+    this._prestamoService.updatePrestamos(this.idCliente, prestamo).subscribe(
       (data: any) => {
         this.toastr.success('Préstamos actualizados correctamente', 'Éxito');
       },
@@ -106,7 +124,24 @@ export class BancosComponent {
         this.toastr.error('Ocurrió un error al actualizar los préstamos', 'Error');
       }
     );
+  
+
+  const inversion: Inversion = {
+    id_Banco: 0,
+    id_Inversion: 0,
+    interes_Mensual: this.interes_mensual,
+    interes_Anual: this.interes_anual,
+    interes_Diario: this.interes_diario,
+  };
+
+  this._inversionesService.updateInversion(this.idCliente, inversion).subscribe(
+    (data: any) => {
+      this.toastr.success('Inversion actualizados correctamente', 'Éxito');
+    },
+    (error) => {
+      this.toastr.error('Ocurrió un error al actualizar los Inversion', 'Error');
+    }
+  );
+
   }
-
-
 }

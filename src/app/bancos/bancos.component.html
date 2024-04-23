@@ -33,6 +33,18 @@
             <input type="text" [(ngModel)]="detalle" class="form-control" placeholder="Ingrese apellido">
             <label>Detalles</label>
         </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="interes_diario" class="form-control" placeholder="Ingrese apellido">
+            <label>Interes Diario</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="interes_mensual" class="form-control" placeholder="Ingrese apellido">
+            <label>Interes Mensual</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="interes_anual" class="form-control" placeholder="Ingrese apellido">
+            <label>Interes Anual</label>
+        </div>
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
         </div>
