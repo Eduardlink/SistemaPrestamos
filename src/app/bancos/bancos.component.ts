@@ -179,24 +179,58 @@ export class BancosComponent {
     });
   }
 
-  openModal() {
-    const modal = document.getElementById('exampleModalToggle');
+  openModalPrestamo() {
+    const modal = document.getElementById('exampleModalToggle1');
     if (modal) {
       modal.classList.add('show');
       modal.style.display = 'block';
       modal.setAttribute('aria-modal', 'true');
-
     }
-
-
   }
-
-  closeModal() {
-    const modal = document.getElementById('exampleModalToggle');
+  closeModalPrestamo() {
+    const modal = document.getElementById('exampleModalToggle1');
     if (modal) {
       modal.classList.remove('show');
       modal.style.display = 'none';
       modal.setAttribute('aria-modal', 'false');
     }
   }
+  openModalInversiones() {
+    const modal = document.getElementById('exampleModalToggle2');
+    if (modal) {
+      modal.classList.add('show');
+      modal.style.display = 'block';
+      modal.setAttribute('aria-modal', 'true');
+  
+    }
+  }
+  
+  closeModalInversiones() {
+    const modal = document.getElementById('exampleModalToggle2');
+    if (modal) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-modal', 'false');
+    }
+  }
+
+
+openModalCobros() {
+  const modal = document.getElementById('exampleModalToggle3');
+  if (modal) {
+    modal.classList.add('show');
+    modal.style.display = 'block';
+    modal.setAttribute('aria-modal', 'true');
+
+  }
+}
+
+closeModalCobros() {
+  const modal = document.getElementById('exampleModalToggle3');
+  if (modal) {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-modal', 'false');
+  }
+}
 }

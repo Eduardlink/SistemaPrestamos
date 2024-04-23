@@ -13,6 +13,9 @@
             <input type="text" [(ngModel)]="direccion" class="form-control">
             <label>Direccion</label>
         </div>
+        <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" (click)="openModalPrestamo()">Prestamos</button>
+        </div>
         <div class="form-floating mb-3">
             <input type="text" [(ngModel)]="tipo" class="form-control">
             <label>Tipo</label>
@@ -33,6 +36,26 @@
             <input type="text" [(ngModel)]="detalle" class="form-control">
             <label>Detalles</label>
         </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Tasa Interes</th>
+                    <th>Monto Minimo</th>
+                    <th>Monto Maximo</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" (click)="openModalInversiones()">Inversiones</button>
+        </div>
         <div class="form-floating mb-3">
             <input type="text" [(ngModel)]="interes_diario" class="form-control">
             <label>Interes Diario</label>
@@ -46,7 +69,7 @@
             <label>Interes Anual</label>
         </div>
         <div class="d-grid gap-2 mb-3">
-            <button type="button" class="btn btn-primary btn-lg" (click)="openModal()">Cobros Indirectos</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="openModalCobros()">Cobros Indirectos</button>
         </div>
         <table class="table">
             <thead>
@@ -69,8 +92,75 @@
     </div>
 </div>
 
+<div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+            <div class="p-4">
+                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Prestamo</h1>
+            </div>
+            <div class="body">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" [(ngModel)]="nombreCobro" class="form-control">
+                    <label for="nombreCobro">Tipo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Tasa Interes</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Monto Minimo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Monto Maximo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Detalles</label>
+                </div>
 
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            </div>
+            <div class="p-4">
+                <button type="button" class="btn btn-primary" >Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="closeModalPrestamo()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+            <div class="p-4">
+                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Inversiones</h1>
+            </div>
+            <div class="body">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" [(ngModel)]="nombreCobro" class="form-control">
+                    <label for="nombreCobro">Interes Diario</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Interes Mensual</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Interes Anual</label>
+                </div>
+            </div>
+            <div class="p-4">
+                <button type="button" class="btn btn-primary" >Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="closeModalInversiones()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
@@ -89,7 +179,7 @@
             </div>
             <div class="p-4">
                 <button type="button" class="btn btn-primary" (click)="addCobrosIndirectos()">Guardar</button>
-                <button type="button" class="btn btn-primary" (click)="closeModal()">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="closeModalCobros()">Cerrar</button>
             </div>
         </div>
     </div>
