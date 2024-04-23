@@ -3,17 +3,21 @@ import { CobrosIndirectosService } from '../../servicios/cobros-indirectos.servi
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
-
 @Component({
   selector: 'app-amortizacion-alemana',
   templateUrl: './amortizacion-alemana.component.html',
   styleUrls: ['./amortizacion-alemana.component.css'],
 })
 export class AmortizacionAlemanaComponent implements OnInit {
+  @Input() tipoAmortizacion: string | undefined;
   @Input() montoPrestamo: number | undefined;
   @Input() plazoMeses: number | undefined;
   @Input() tasaInteresAnual: number | undefined;
   @Input() idBancoSeleccionado: number | undefined;
+  @Input() nombreBanco: string | undefined;
+  @Input() direccionBanco: string | undefined;
+  @Input() logoBanco: string | undefined;
+  @Input() tipoCredito: string | undefined;
 
   amortizacionAlemana: any[] = [];
   cobrosIndirectos: any[] = [];
@@ -42,6 +46,27 @@ export class AmortizacionAlemanaComponent implements OnInit {
     }
   }
 
+  receiveData(data: any): void {
+    // Handle received data from the parent component
+    this.montoPrestamo = data.montoPrestamo;
+    this.plazoMeses = data.plazoMeses;
+    this.tasaInteresAnual = data.tasaInteresAnual;
+    this.tipoAmortizacion = data.tipoAmortizacion;
+    this.nombreBanco = data.nombreBanco;
+    this.logoBanco = data.logoBanco;
+    this.direccionBanco = data.direccionBanco;
+    this.tipoCredito = data.tipoPrestamo;
+    this.cobrosIndirectos = data.cobrosIndirectos;
+
+    // Call method to recalculate amortization based on new data
+    this.calcularAmortizacionAlemana();
+  }
+
+  receiveCobrosIndirectos(cobrosIndirectos: any[]): void {
+    // Recibir y mostrar los cobros indirectos
+    this.cobrosIndirectos = cobrosIndirectos;
+  }
+
   // Función para calcular la suma de montos de cobros indirectos
   calcularTotalCobrosIndirectos(): void {
     if (this.cobrosIndirectos.length > 0) {
@@ -50,6 +75,13 @@ export class AmortizacionAlemanaComponent implements OnInit {
         0
       );
     }
+  }
+
+  formatTasaInteres(): string {
+    if (this.tasaInteresAnual !== undefined) {
+      return (this.tasaInteresAnual * 100).toFixed(2); // Multiplicar por 100 para mostrar como porcentaje y fijar 2 decimales
+    }
+    return ''; // Manejo de caso undefined o null
   }
 
   // Función para calcular la tabla de amortización en el sistema alemán
@@ -62,6 +94,8 @@ export class AmortizacionAlemanaComponent implements OnInit {
         const interes = saldoRestante * tasaMensual;
         const amortizacion = this.montoPrestamo / this.plazoMeses;
         const cuota = amortizacion + interes;
+        const cobrosIndirectosPorPeriodo =
+          this.calcularCobrosIndirectosPorPeriodo();
 
         saldoRestante -= amortizacion;
 
@@ -72,10 +106,9 @@ export class AmortizacionAlemanaComponent implements OnInit {
           amortizacion: amortizacion.toFixed(2),
           capital: saldoRestante.toFixed(2),
           saldoRestante: saldoRestante.toFixed(2),
-          cobrosIndirectos:
-            this.calcularCobrosIndirectosPorPeriodo(i).toFixed(2),
+          cobrosIndirectos: cobrosIndirectosPorPeriodo.toFixed(2),
           sumaCuotaCobrosIndirectos: (
-            cuota + this.calcularCobrosIndirectosPorPeriodo(i)
+            cuota + cobrosIndirectosPorPeriodo
           ).toFixed(2),
         });
 
@@ -86,16 +119,18 @@ export class AmortizacionAlemanaComponent implements OnInit {
     }
   }
 
-  // Función para calcular los cobros indirectos por período
-  calcularCobrosIndirectosPorPeriodo(periodo: number): number {
-    if (
-      this.cobrosIndirectos.length > 0 &&
-      this.plazoMeses &&
-      periodo <= this.plazoMeses
-    ) {
-      return this.totalCobrosIndirectos / this.plazoMeses;
+  // Función para calcular la suma total de los cobros indirectos y dividir entre plazo en meses
+  calcularCobrosIndirectosPorPeriodo(): number {
+    let sumaCobrosIndirectos = this.cobrosIndirectos.reduce(
+      (sum, cobro) => sum + parseFloat(cobro.montoSeguro),
+      0
+    );
+
+    if (this.plazoMeses !== undefined && this.plazoMeses !== 0) {
+      return sumaCobrosIndirectos / this.plazoMeses;
+    } else {
+      return 0;
     }
-    return 0;
   }
 
   // Método para generar el archivo PDF desde la tabla HTML

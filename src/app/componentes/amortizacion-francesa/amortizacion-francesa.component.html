@@ -1,38 +1,54 @@
-<div *ngIf="cobrosIndirectos.length > 0">
-  <h2>Cobros Indirectos</h2>
-  <ul>
-    <li *ngFor="let cobro of cobrosIndirectos">
-      {{ cobro.nombreCobroIndirecto }} - Monto: {{ cobro.montoSeguro | currency }}
-    </li>
-  </ul>
-</div>
+<div *ngIf="tipoAmortizacion === 'francesa'">
+  <button (click)="generarPDF()">Descargar PDF</button>
+  <div *ngIf="cobrosIndirectos.length > 0">
+    <h3>Cobros Indirectos</h3>
+    <ul>
+      <li *ngFor="let cobro of cobrosIndirectos">
+        {{ cobro.nombreCobroIndirecto }} - {{ cobro.montoSeguro | currency }}
+      </li>
+    </ul>
+  </div>
 
-<div *ngIf="amortizacionFrancesa.length > 0">
+  <div class="datos-entrada">
+    <h3>Datos de Entrada:</h3>
+    <p>Tipo de Crédito: {{ tipoCredito }}</p>
+    <p>Monto del Préstamo: {{ montoPrestamo | currency }}</p>
+    <p>Plazo en Meses: {{ plazoMeses }}</p>
+    <p>Interés Anual: {{ tasaInteresAnual | percent }}</p>
+    <p>Tipo de Amortización: {{ tipoAmortizacion }}</p>
+    <p>Banco: {{ nombreBanco }}</p>
+    <p>Dirección del Banco: {{ direccionBanco }}</p>
+    <img [src]="logoBanco" alt="Logo del banco" style="max-width: 100px;">
+  </div>
+
   <h2>Tabla de Amortización (Sistema Francés)</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Periodo</th>
-        <th>Cuota</th>
-        <th>Interés</th>
-        <th>Amortización</th>
-        <th>Capital</th>
-        <th>Saldo Restante</th>
-        <th>Cobros Indirectos</th> <!-- Nueva columna -->
-        <th>Cobros Indirectos + Cuota</th> <!-- Nueva columna -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pago of amortizacionFrancesa">
-        <td>{{ pago.periodo }}</td>
-        <td>{{ pago.cuota | currency }}</td>
-        <td>{{ pago.interes | currency }}</td>
-        <td>{{ pago.amortizacion | currency }}</td>
-        <td>{{ pago.capital | currency }}</td>
-        <td>{{ pago.saldoRestante | currency }}</td>
-        <td>{{ pago.cobrosIndirectos | currency }}</td> <!-- Muestra los cobros indirectos por período -->
-        <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td> <!-- Muestra la suma de cuota y cobros indirectos por período -->
-      </tr>
-    </tbody>
-  </table>
+  <!-- Tabla de Amortización (Sistema Francés) -->
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Cuota</th>
+          <th>Interés</th>
+          <th>Amortización</th>
+          <th>Capital</th>
+          <th>Saldo Restante</th>
+          <th>Cobros Indirectos</th>
+          <th>Cuota + Cobros Indirectos</th> <!-- Nueva columna -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of amortizacionFrancesa">
+          <td>{{ pago.periodo }}</td>
+          <td>{{ pago.cuota | currency }}</td>
+          <td>{{ pago.interes | currency }}</td>
+          <td>{{ pago.amortizacion | currency }}</td>
+          <td>{{ pago.capital | currency }}</td>
+          <td>{{ pago.saldoRestante | currency }}</td>
+          <td>{{ pago.cobrosIndirectos | currency }}</td>
+          <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td> <!-- Mostrar la suma de cuota + cobros indirectos -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

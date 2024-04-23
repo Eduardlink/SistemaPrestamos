@@ -25,6 +25,10 @@ export class PrestamoService {
     const url = `${this.myAppUrl}prestamos/banco/${idBanco}`;
     return this.http.get<Prestamo[]>(url);
   }
+  getPrestamosByPrestamoId(idPrestamo: number): Observable<Prestamo[]> {
+    const url = `${this.myAppUrl}prestamos/prestamo/${idPrestamo}`;
+    return this.http.get<Prestamo[]>(url);
+  }
 
   getPrestamoByClienteId(userId: number): Observable<Prestamo> {
     const url = `${this.myAppUrl}${this.myApiUrl}/${userId}`;

@@ -16,23 +16,23 @@
           <h3>{{ selectedBancoName() }}</h3>
           <p>{{ selectedBancoAdress() }}</p>
         </div>
-        
       </div>
     </div>
     <div class="detallePrestamo">
-      <h2>Datelle de credito</h2>
+      <h2>Detalle de Crédito</h2>
       <div *ngIf="selectedBancoId">
         <div *ngIf="prestamos.length > 0">
           <form class="formularioDetalle" (submit)="submitForm()">
-          <div>
-            <p>Tipo de crédito:</p>
-            <select (change)="onPrestamoSelect($event)">
-              <option value="">Selecciona un tipo de préstamo...</option>
-              <option *ngFor="let prestamo of prestamos" [value]="prestamo.id_Prestamo">
-                {{ prestamo.tipo }}
-              </option>
-            </select>
-          </div>
+            <div>
+              <p>Tipo de crédito:</p>
+              <select (change)="onPrestamoSelect($event)">
+                <option value="">Selecciona un tipo de préstamo...</option>
+                <option *ngFor="let prestamo of prestamos" [value]="prestamo.id_Prestamo">
+                  {{ prestamo.tipo }}
+                </option>
+              </select>
+            </div>
+            
             <div>
               <label for="monto">Monto Solicitado:</label>
               <input type="number" id="monto" name="monto" [(ngModel)]="montoSolicitado" required>
@@ -53,7 +53,7 @@
                 <option value="francesa">Amortización Francesa</option>
               </select>
             </div>
-            <!--<button type="submit">Solicitar Préstamo</button>-->
+            <button type="submit">Calcular Amortización</button>
           </form>
         </div>
       </div>
@@ -61,17 +61,20 @@
   </div>
   <div class="tabla">
     <div *ngIf="tipoAmortizacion === 'alemana'">
-      <!-- Mostrar tabla de amortización alemana si se seleccionó ese tipo -->
-      <app-amortizacion-alemana [montoPrestamo]="montoSolicitado" [plazoMeses]="plazoMeses"
-        [tasaInteresAnual]="interesAnual" [idBancoSeleccionado]="selectedBancoId">
+      <app-amortizacion-alemana #amortizacionAlemana
+        [montoPrestamo]="montoSolicitado"
+        [plazoMeses]="plazoMeses"
+        [tasaInteresAnual]="interesAnual">
       </app-amortizacion-alemana>
     </div>
-
     <div *ngIf="tipoAmortizacion === 'francesa'">
-      <!-- Mostrar tabla de amortización francesa si se seleccionó ese tipo -->
-      <app-amortizacion-francesa [montoPrestamo]="montoSolicitado" [plazoMeses]="plazoMeses"
-        [tasaInteresAnual]="interesAnual" [idBancoSeleccionado]="selectedBancoId">
+      <app-amortizacion-francesa #amortizacionFrancesa
+        [montoPrestamo]="montoSolicitado"
+        [plazoMeses]="plazoMeses"
+        [tasaInteresAnual]="interesAnual"
+        [idBancoSeleccionado]="selectedBancoId">
       </app-amortizacion-francesa>
     </div>
   </div>
+  
 </div>
