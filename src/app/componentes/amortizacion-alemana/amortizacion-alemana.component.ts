@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CobrosIndirectosService } from '../../servicios/cobros-indirectos.service';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-amortizacion-alemana',
   templateUrl: './amortizacion-alemana.component.html',
-  styleUrls: ['./amortizacion-alemana.component.css']
+  styleUrls: ['./amortizacion-alemana.component.css'],
 })
 export class AmortizacionAlemanaComponent implements OnInit {
   @Input() montoPrestamo: number | undefined;
@@ -16,13 +18,22 @@ export class AmortizacionAlemanaComponent implements OnInit {
   cobrosIndirectos: any[] = [];
   totalCobrosIndirectos: number = 0; // Variable para almacenar la suma de montos de cobros indirectos
 
-  constructor(private cobrosIndirectosService: CobrosIndirectosService) { }
+  @ViewChild('cobrosIndirectosSection') cobrosIndirectosSection!: ElementRef;
+  @ViewChild('amortizacionTable') amortizacionTable!: ElementRef;
+
+  constructor(private cobrosIndirectosService: CobrosIndirectosService) {}
 
   ngOnInit(): void {
-    if (this.montoPrestamo && this.plazoMeses && this.tasaInteresAnual && this.idBancoSeleccionado) {
+    if (
+      this.montoPrestamo &&
+      this.plazoMeses &&
+      this.tasaInteresAnual &&
+      this.idBancoSeleccionado
+    ) {
       // Llamar al servicio de cobros indirectos con la ID del banco seleccionado
-      this.cobrosIndirectosService.getCobrosIndirectosByBancoId(this.idBancoSeleccionado)
-        .subscribe(cobros => {
+      this.cobrosIndirectosService
+        .getCobrosIndirectosByBancoId(this.idBancoSeleccionado)
+        .subscribe((cobros) => {
           this.cobrosIndirectos = cobros;
           this.calcularTotalCobrosIndirectos();
           this.calcularAmortizacionAlemana();
@@ -33,7 +44,10 @@ export class AmortizacionAlemanaComponent implements OnInit {
   // Función para calcular la suma de montos de cobros indirectos
   calcularTotalCobrosIndirectos(): void {
     if (this.cobrosIndirectos.length > 0) {
-      this.totalCobrosIndirectos = this.cobrosIndirectos.reduce((sum, cobro) => sum + parseFloat(cobro.montoSeguro), 0);
+      this.totalCobrosIndirectos = this.cobrosIndirectos.reduce(
+        (sum, cobro) => sum + parseFloat(cobro.montoSeguro),
+        0
+      );
     }
   }
 
@@ -45,23 +59,25 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
       for (let i = 1; i <= this.plazoMeses; i++) {
         const interes = saldoRestante * tasaMensual;
-        const amortizacion = this.montoPrestamo / this.plazoMeses; // Calculamos la amortización para este período
-        const cuota = amortizacion + interes; // La cuota es la suma de la amortización más el interés
+        const amortizacion = this.montoPrestamo / this.plazoMeses;
+        const cuota = amortizacion + interes;
 
-        saldoRestante -= amortizacion; // Reducimos el saldo restante por la amortización
+        saldoRestante -= amortizacion;
 
         this.amortizacionAlemana.push({
           periodo: i,
           cuota: cuota.toFixed(2),
           interes: interes.toFixed(2),
-          amortizacion: amortizacion.toFixed(2), // Incluimos la amortización en la tabla
+          amortizacion: amortizacion.toFixed(2),
           capital: saldoRestante.toFixed(2),
           saldoRestante: saldoRestante.toFixed(2),
-          cobrosIndirectos: this.calcularCobrosIndirectosPorPeriodo(i).toFixed(2),
-          sumaCuotaCobrosIndirectos: (cuota + this.calcularCobrosIndirectosPorPeriodo(i)).toFixed(2)
+          cobrosIndirectos:
+            this.calcularCobrosIndirectosPorPeriodo(i).toFixed(2),
+          sumaCuotaCobrosIndirectos: (
+            cuota + this.calcularCobrosIndirectosPorPeriodo(i)
+          ).toFixed(2),
         });
 
-        // Si el saldo restante es menor o igual a 0, salimos del bucle
         if (saldoRestante <= 0) {
           break;
         }
@@ -71,10 +87,37 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
   // Función para calcular los cobros indirectos por período
   calcularCobrosIndirectosPorPeriodo(periodo: number): number {
-    if (this.cobrosIndirectos.length > 0 && this.plazoMeses && periodo <= this.plazoMeses) {
+    if (
+      this.cobrosIndirectos.length > 0 &&
+      this.plazoMeses &&
+      periodo <= this.plazoMeses
+    ) {
       return this.totalCobrosIndirectos / this.plazoMeses;
     }
     return 0;
   }
 
+  // Método para generar el archivo PDF desde la tabla HTML
+  generarPDF(): void {
+    const doc = new jsPDF();
+
+    // Capturar secciones HTML como imágenes
+    html2canvas(this.cobrosIndirectosSection.nativeElement).then((canvas1) => {
+      const imgData1 = canvas1.toDataURL('image/png');
+
+      html2canvas(this.amortizacionTable.nativeElement).then((canvas2) => {
+        const imgData2 = canvas2.toDataURL('image/png');
+
+        // Agregar imágenes al documento PDF
+        const imgWidth = doc.internal.pageSize.getWidth(); // Ancho de página
+        const imgHeight = doc.internal.pageSize.getHeight(); // Alto de página
+
+        doc.addImage(imgData1, 'PNG', 10, 10, imgWidth - 20, imgHeight / 10);
+        doc.addImage(imgData2, 'PNG', 10, 50, imgWidth - 20, imgHeight / 3);
+
+        // Descargar el PDF
+        doc.save('amortizacion_alemana.pdf');
+      });
+    });
+  }
 }

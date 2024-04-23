@@ -1,4 +1,5 @@
-<div *ngIf="cobrosIndirectos.length > 0">
+<div *ngIf="cobrosIndirectos.length > 0" #cobrosIndirectosSection>
+  <!-- Contenido de Cobros Indirectos -->
   <h2>Cobros Indirectos</h2>
   <ul>
     <li *ngFor="let cobro of cobrosIndirectos">
@@ -8,18 +9,22 @@
 </div>
 
 <div *ngIf="amortizacionAlemana.length > 0">
+  <button (click)="generarPDF()">Descargar PDF</button>
+
   <h2>Tabla de Amortización (Sistema Alemán)</h2>
-  <div class="table-responsive">
+  <div class="table-responsive" #amortizacionTable>
     <table class="table table-bordered">
+      <!-- Encabezados y filas de la tabla -->
       <thead>
         <tr>
           <th>Periodo</th>
           <th>Cuota</th>
           <th>Interés</th>
+          <th>Amortización</th>
           <th>Capital</th>
           <th>Saldo Restante</th>
-          <th>Cobros Indirectos</th> <!-- Nueva columna -->
-          <th>Cobros Indirectos + Cuota</th> <!-- Nueva columna -->
+          <th>Cobros Indirectos</th>
+          <th>Cobros Indirectos + Cuota</th>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +32,11 @@
           <td>{{ pago.periodo }}</td>
           <td>{{ pago.cuota | currency }}</td>
           <td>{{ pago.interes | currency }}</td>
+          <td>{{ pago.amortizacion | currency }}</td>
           <td>{{ pago.capital | currency }}</td>
           <td>{{ pago.saldoRestante | currency }}</td>
-          <td>{{ pago.cobrosIndirectos | currency }}</td> <!-- Muestra los cobros indirectos por período -->
-          <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td> <!-- Muestra la suma de cuota y cobros indirectos por período -->
+          <td>{{ pago.cobrosIndirectos | currency }}</td>
+          <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td>
         </tr>
       </tbody>
     </table>
