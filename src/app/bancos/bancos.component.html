@@ -2,52 +2,95 @@
     <div class="body">
         <h3>Modificar Información</h3>
         <div class="form-floating mb-3 mt-3">
-            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese usuario">
+            <input type="text" [(ngModel)]="nombre" class="form-control">
             <label>Nombre</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="logo" class="form-control" placeholder="Ingrese nombre">
+            <input type="text" [(ngModel)]="logo" class="form-control">
             <label>Logo</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="direccion" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="direccion" class="form-control">
             <label>Direccion</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="tipo" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="tipo" class="form-control">
             <label>Tipo</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="tasa" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="tasa" class="form-control">
             <label>Tasa Interes</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="monto_min" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="monto_min" class="form-control">
             <label>Monto Minimo</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="monto_max" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="monto_max" class="form-control">
             <label>Monto Maximo</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="detalle" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="detalle" class="form-control">
             <label>Detalles</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_diario" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="interes_diario" class="form-control">
             <label>Interes Diario</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_mensual" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="interes_mensual" class="form-control">
             <label>Interes Mensual</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_anual" class="form-control" placeholder="Ingrese apellido">
+            <input type="text" [(ngModel)]="interes_anual" class="form-control">
             <label>Interes Anual</label>
         </div>
+        <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" (click)="openModal()">Cobros Indirectos</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
         </div>
         
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+            <div class="p-4">
+                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Cobro</h1>
+            </div>
+            <div class="body">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" [(ngModel)]="nombreCobro" class="form-control">
+                    <label for="nombreCobro">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                    <label for="montoCobro">Monto</label>
+                </div>
+            </div>
+            <div class="p-4">
+                <button type="button" class="btn btn-primary" (click)="addCobrosIndirectos()">Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="closeModal()">Cerrar</button>
+            </div>
+        </div>
     </div>
 </div>

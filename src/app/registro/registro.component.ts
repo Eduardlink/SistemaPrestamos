@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { RegistroService } from '../servicios/registro.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BancoService } from '../servicios/banco.service';
-import { Banco } from '../interfaces/banco';
+import { Banco2 } from '../interfaces/banco2';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -27,7 +27,7 @@ export class RegistroComponent implements OnInit {
   correo: string = '';
   telefono: string = '';
   rol: string = '';
-
+  idBancoRegistrado: number = 0;
 
   id_Banco!: number;
   nombreB!: string;
@@ -116,8 +116,7 @@ export class RegistroComponent implements OnInit {
       return;
     }
 
-    const banco: Banco = {
-      id_Banco: 0, // ¿Cómo se obtiene el ID del banco? Este valor debería ser autogenerado por la base de datos
+    const banco: Banco2 = {
       nombre: this.nombreB,
       logo: this.logo,
       direccion: this.direccion,
@@ -125,9 +124,11 @@ export class RegistroComponent implements OnInit {
     };
 
     this._bancosService.postBancos(banco).subscribe({
-      next: (v) => {
+      next: (v: any) => {
         this.toastr.success(`El banco ${this.nombreB} fue registrado con éxito`, 'Banco Registrado');
+        this.idBancoRegistrado = v.id;
         console.log(banco);
+        
           
       },
       error: (e: HttpErrorResponse) => {

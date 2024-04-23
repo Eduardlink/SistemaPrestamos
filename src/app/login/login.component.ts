@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Registro } from '../interfaces/registro';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BancoService } from '../servicios/banco.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private toastr: ToastrService,
     private _registroService: RegistroService,
-    private router: Router) { }
+    private router: Router,
+    private _bancoService: BancoService) { }
 
 
   ngOnInit(): void {
@@ -50,6 +52,13 @@ export class LoginComponent implements OnInit {
         // Almacenar el rol del usuario en localStorage o sessionStorage
         localStorage.setItem('rolUsuario', data.rol);
         localStorage.setItem('idCliente', data.id_Cliente);
+                
+        this._bancoService.getBancoByClienteId(data.id_Cliente).subscribe((bancoData: any) => {
+          if (bancoData && bancoData.id_Banco) {
+            localStorage.setItem('id_Banco', bancoData.id_Banco.toString());
+          }
+        });
+
         // Redirigir a la página principal
         this.router.navigate(['/principal']);
 
@@ -61,6 +70,8 @@ export class LoginComponent implements OnInit {
     }, (error: HttpErrorResponse) => {
       this.toastr.error('El correo o la contraseña son incorrectos', 'Error');
     });
+
+    
 
   }
 

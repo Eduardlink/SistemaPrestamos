@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { BancoService } from '../servicios/banco.service';
 import { ToastrService } from 'ngx-toastr';
-import { Banco } from '../interfaces/banco';
+import { Banco2 } from '../interfaces/banco2';
 import { Router } from '@angular/router';
-import { RegistroService } from '../servicios/registro.service';
 import { PrestamoService } from '../servicios/prestamo.service';
 import { Prestamo } from '../interfaces/prestamo';
 import { InversionService } from '../servicios/inversion.service';
 import { Inversion } from '../interfaces/inversion';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CobroIndirectos } from '../interfaces/cobros-indirectos';
+import { CobrosIndirectosService } from '../servicios/cobros-indirectos.service';
 
 @Component({
   selector: 'app-bancos',
@@ -20,6 +22,7 @@ export class BancosComponent {
   logo: string = '';
   direccion: string = '';
   idCliente: number = 0;
+  idBancoo: number = 0;
 
   id_Prestamo: number = 0;
   tipo: string = '';
@@ -32,18 +35,23 @@ export class BancosComponent {
   interes_mensual: number = 0;
   interes_anual: number = 0;
 
+  nombreCobro: string = '';
+  montoCobro: string = '';
+
 
   constructor(private _bancoService: BancoService,
     private router: Router,
     private toastr: ToastrService,
     private _prestamoService: PrestamoService,
-    private _inversionesService: InversionService) { }
+    private _inversionesService: InversionService,
+    private _cobroService: CobrosIndirectosService) { }
 
   ngOnInit(): void {
     this.idCliente = Number(localStorage.getItem('idCliente'));
+    this.idBancoo = Number(localStorage.getItem('id_Banco'));
 
     this._bancoService.getBancoByClienteId(this.idCliente).subscribe(
-      (data: Banco) => {
+      (data: Banco2) => {
         this.nombre = data.nombre;
         this.logo = data.logo;
         this.direccion = data.direccion;
@@ -89,15 +97,14 @@ export class BancosComponent {
       return;
     }
 
-    const banco: Banco = {
-      id_Banco: 1,
+    const banco2: Banco2 = {
       nombre: this.nombre,
       logo: this.logo,
       direccion: this.direccion,
       id_Administrador: this.idCliente
     }
 
-    this._bancoService.updateBanco(this.idCliente, banco).subscribe(
+    this._bancoService.updateBanco(this.idCliente, banco2).subscribe(
       (data: any) => {
         this.toastr.success('Información del banco actualizada correctamente', 'Exito');
       },
@@ -124,24 +131,72 @@ export class BancosComponent {
         this.toastr.error('Ocurrió un error al actualizar los préstamos', 'Error');
       }
     );
-  
 
-  const inversion: Inversion = {
-    id_Banco: 0,
-    id_Inversion: 0,
-    interes_Mensual: this.interes_mensual,
-    interes_Anual: this.interes_anual,
-    interes_Diario: this.interes_diario,
-  };
 
-  this._inversionesService.updateInversion(this.idCliente, inversion).subscribe(
-    (data: any) => {
-      this.toastr.success('Inversion actualizados correctamente', 'Éxito');
-    },
-    (error) => {
-      this.toastr.error('Ocurrió un error al actualizar los Inversion', 'Error');
+    const inversion: Inversion = {
+      id_Banco: 0,
+      id_Inversion: 0,
+      interes_Mensual: this.interes_mensual,
+      interes_Anual: this.interes_anual,
+      interes_Diario: this.interes_diario,
+    };
+
+    this._inversionesService.updateInversion(this.idCliente, inversion).subscribe(
+      (data: any) => {
+        this.toastr.success('Inversion actualizados correctamente', 'Éxito');
+      },
+      (error) => {
+        this.toastr.error('Ocurrió un error al actualizar los Inversion', 'Error');
+      }
+    );
+
+  }
+
+  addCobrosIndirectos() {
+    // Verificar si el ID del Banco es válido
+    if (this.idBancoo === 0) {
+      this.toastr.error('No se ha iniciado sesión en un banco válido', 'Error');
+      return;
     }
-  );
 
+    // Crear el objeto de cobros indirectos con el ID del Banco correcto
+    const cobrosIndirectos: CobroIndirectos = {
+      id_Banco: this.idBancoo,
+      id_CobroIndirectos: 0,
+      nombreCobroIndirecto: this.nombreCobro,
+      montoSeguro: this.montoCobro
+    };
+
+    // Llamar al servicio para registrar el cobro indirecto
+    this._cobroService.postCobros(cobrosIndirectos).subscribe({
+      next: (v) => {
+        this.toastr.success(`El cobro ${this.nombreCobro} fue registrado con éxito`, 'Cobro Registrado');
+        console.log(cobrosIndirectos);
+      },
+      error: (e: HttpErrorResponse) => {
+        this.toastr.error('Error al registrar el cobro', 'Error');
+      }
+    });
+  }
+
+  openModal() {
+    const modal = document.getElementById('exampleModalToggle');
+    if (modal) {
+      modal.classList.add('show');
+      modal.style.display = 'block';
+      modal.setAttribute('aria-modal', 'true');
+
+    }
+
+
+  }
+
+  closeModal() {
+    const modal = document.getElementById('exampleModalToggle');
+    if (modal) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-modal', 'false');
+    }
   }
 }
