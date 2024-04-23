@@ -34,6 +34,9 @@ export class InversionService {
   updateInversion(userId: number, banco: Inversion): Observable<any> {
     return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${userId}`, banco);
   }
+  postInversion(user: Inversion): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl, user);
+  }
 
 
 }

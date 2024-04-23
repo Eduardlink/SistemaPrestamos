@@ -3,6 +3,7 @@ import { CobrosIndirectosService } from '../../servicios/cobros-indirectos.servi
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
+
 @Component({
   selector: 'app-amortizacion-alemana',
   templateUrl: './amortizacion-alemana.component.html',

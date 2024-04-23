@@ -47,12 +47,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let prestamo of prestamos">
+                    <!-- Verificar si el id_Banco coincide con el del localStorage -->
+                    <ng-container *ngIf="prestamo.id_Banco === idBanco">
+                        <td>{{ prestamo.tipo }}</td>
+                        <td>{{ prestamo.tasa_interes }}</td>
+                        <td>{{ prestamo.monto_min }}</td>
+                        <td>{{ prestamo.monto_max }}</td>
+                        <td>{{ prestamo.detalles }}</td>
+                    </ng-container>
                 </tr>
             </tbody>
         </table>
+        
+        
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-primary btn-lg" (click)="openModalInversiones()">Inversiones</button>
         </div>
@@ -79,16 +87,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let cobro of cobros">
+                    <!-- Verificar si el id_Banco coincide con el del localStorage -->
+                    <ng-container *ngIf="cobro.id_Banco === idBanco">
+                        <td>{{ cobro.nombreCobroIndirecto }}</td>
+                        <td>{{ cobro.montoSeguro }}</td>
+                    </ng-container>
                 </tr>
             </tbody>
         </table>
+        
+        
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
         </div>
-        
+
     </div>
 </div>
 
@@ -123,7 +136,7 @@
 
             </div>
             <div class="p-4">
-                <button type="button" class="btn btn-primary" >Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="addPrestamos()">Guardar</button>
                 <button type="button" class="btn btn-primary" (click)="closeModalPrestamo()">Cerrar</button>
             </div>
         </div>
@@ -152,7 +165,7 @@
                 </div>
             </div>
             <div class="p-4">
-                <button type="button" class="btn btn-primary" >Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="addInversiones()">Guardar</button>
                 <button type="button" class="btn btn-primary" (click)="closeModalInversiones()">Cerrar</button>
             </div>
         </div>
@@ -176,7 +189,7 @@
                     <input type="text" [(ngModel)]="montoCobro" class="form-control">
                     <label for="montoCobro">Monto</label>
                 </div>
-                
+
             </div>
             <div class="p-4">
                 <button type="button" class="btn btn-primary" (click)="addCobrosIndirectos()">Guardar</button>

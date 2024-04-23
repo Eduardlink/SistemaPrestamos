@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Prestamo } from '../interfaces/prestamo';
 import { environment } from '../../environments/enviroment';
+import { Prestamo2 } from '../interfaces/prestamo2';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class PrestamoService {
 
   updatePrestamos(userId: number, banco: Prestamo): Observable<any> {
     return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${userId}`, banco);
+  }
+
+  postPrestamos(user: Prestamo2): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl, user);
   }
 }
