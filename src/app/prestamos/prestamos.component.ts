@@ -63,6 +63,16 @@ export class PrestamosComponent implements OnInit {
     return selectedBanco ? selectedBanco.logo : undefined;
   }
 
+  selectedBancoName(): string | undefined {
+    const selectedBanco = this.bancos.find(banco => banco.id_Banco === this.selectedBancoId);
+    return selectedBanco ? selectedBanco.nombre : undefined;
+  }
+
+  selectedBancoAdress(): string | undefined {
+    const selectedBanco = this.bancos.find(banco => banco.id_Banco === this.selectedBancoId);
+    return selectedBanco ? selectedBanco.direccion : undefined;
+  }
+
   onPrestamoSelect(event: Event) {
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.selectedPrestamoId = selectedValue ? parseInt(selectedValue, 10) : undefined;

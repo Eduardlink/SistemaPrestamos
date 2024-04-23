@@ -1,7 +1,7 @@
 
 <div class="wrapper">
     <div class="body registro">
-        <h3>Registrar Usuario</h3>
+        <h2>Registrar Usuario</h2>
         <div class="form-floating mb-3 mt-3">
             <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
             <label>Usuario</label>
@@ -26,16 +26,25 @@
             <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese teléfono">
             <label>Teléfono</label>
         </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Admin" id="rolAdmin">
-            <label class="form-check-label" for="rolAdmin">Admin</label>
+        <div class="tipoUsuario">
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Admin" id="rolAdmin">
+                <label class="form-check-label" for="rolAdmin">Admin</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Usuario" id="rolUsuario">
+                <label class="form-check-label" for="rolUsuario">Usuario</label>
+            </div>
         </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" [(ngModel)]="rol" value="Usuario" id="rolUsuario">
-            <label class="form-check-label" for="rolUsuario">Usuario</label>
-        </div>
-        <div class="d-grid gap-2 mb-3">
-            <button type="button" (click)="addRegistro()" class="btn btn-primary btn-lg">Registrarse</button>
+        <div class="botones">
+
+            <div>
+                <button type="button" (click)="regresar()" class="regresar">Regresar</button>
+            </div>
+            <div class="">
+                <button type="button" (click)="addRegistro()" class="registrarse">Registrarse</button>
+            </div>
         </div>
         
     </div>
@@ -47,20 +56,19 @@
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
             <div class="p-4">
-                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro de Banco</h1>
+                <h1>Registro de Banco</h1>
             </div>
-            <div class="body puta">
+            <div class="body formularioRegistro">
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" [(ngModel)]="nombreB" class="form-control" placeholder="Ingrese usuario">
-                    <label>Nombre</label>
+                    <input type="text" [(ngModel)]="nombreB"  placeholder="Ingrese usuario">
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="logo" class="form-control" placeholder="Ingrese contraseña">
-                    <label>Logo</label>
+                    <input type="text" [(ngModel)]="logo"  placeholder="Ingrese contraseña">
+                    
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="direccion" class="direccion form-control" placeholder="Ingrese nombre">
-                    <label>Direccion</label>
+                    <input type="text" [(ngModel)]="direccion"  placeholder="Ingrese nombre">
+                    
                 </div>
             </div>
             <div class=" p-4">

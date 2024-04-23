@@ -1,19 +1,21 @@
 .header {
-    background-color: #274C5B;
+    background-color: #000;
     color: white;
     padding: 10px;
     display: flex;
     align-items: center;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
 }
 
 .logo {
-    width: 200px;
+    max-width: 50px;
     margin-right: 50px;
+    margin: 10px 30px;
 }
 
-.nav {
-    margin-left: 500px; /* Alinea el menú a la derecha */
-}
 .nav ul {
     list-style-type: none;
     margin: 0;
@@ -21,76 +23,31 @@
 
 }
 
-.nav ul li {
-    display: inline;
-    margin-left: 20px; /* Ajusta el espacio entre los enlaces según tus preferencias */
-}
-
-.nav ul li:first-child {
-    margin-left: 0; /* Elimina el margen izquierdo del primer enlace */
-}
-
 .nav ul li a.button {
     color: white; /* Cambia el color del texto del botón según tus preferencias */
-    background-color: #018753; /* Cambia el color de fondo del botón */
+    background-color: #01812e; /* Cambia el color de fondo del botón */
     padding: 8px 16px; /* Ajusta el espacio interno del botón según tus preferencias */
     border-radius: 4px; /* Añade esquinas redondeadas al botón */
     text-decoration: none;
     margin: 20px;
 }
 
-.salir{
-    display: flex;
-}
-
-
 .nav ul li a.button:hover {
     background-color: #016339; /* Cambia el color de fondo del botón al pasar el ratón sobre él */
 }
 
-.navbar {
-    background-color: #274C5B;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.navbar-nav {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-item {
-    margin-right: 20px;
-
-}
-
-.nav-link {
-    color: white;
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-}
 .button {
     /* Estilos por defecto */
     color: white;
     text-decoration: none;
     padding: 10px 20px;
+    margin: 0 5px;
     cursor: pointer;
-    
+    border-radius: 10px;
 }
 
 .button:hover {
     background-color: #018753;
-}
-
-.active {
-    background-color: #018753; 
-    color: white;
+    border-radius: 10px;
 }
 

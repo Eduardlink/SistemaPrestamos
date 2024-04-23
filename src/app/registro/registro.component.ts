@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BancoService } from '../servicios/banco.service';
 import { Banco } from '../interfaces/banco';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -37,13 +38,18 @@ export class RegistroComponent implements OnInit {
   constructor(private toastr: ToastrService,
     private _registroService: RegistroService,
     private _bancosService: BancoService,
-    private router: Router) {
+    private router: Router,
+    private location: Location) {
 
   }
 
   ngOnInit(): void {
   }
 
+  regresar() {
+    // Navega de vuelta a la página anterior
+    this.location.back();
+}
 
   addRegistro() {
 

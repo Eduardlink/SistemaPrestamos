@@ -61,18 +61,20 @@ label {
     box-sizing: border-box;
     max-width: 500px;
 }
-.puta input[type="text"],
-.puta input[type="password"],
-.puta input[type="email"],
-.puta input[type="tel"] {
+.formularioRegistro input[type="text"],
+.formularioRegistro input[type="password"],
+.formularioRegistro input[type="email"],
+.formularioRegistro input[type="tel"] {
     width: 500px;
     padding: 10px;
     border: none;
-    background-color: rgba(231, 28, 28, 0.1);
+    background-color: rgb(0, 0, 0,0.6);
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     max-width: 500px;
+    height: 60px;
+    color: #fff;
 }
 
 
@@ -81,19 +83,7 @@ label {
     margin-right: 10px;
 }
 
-button {
-    background-color: #01AE67;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100%;
-}
 
-button:hover {
-    background-color: #018753;
-}
 .custom-modal-size {
     max-width: 550px;
 }
@@ -102,3 +92,77 @@ button:hover {
     background-color: black;
 }
 
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1050;
+    overflow: hidden;
+    outline: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: calc(100vh - 60px); /* Toma el 100% de la altura menos 60px de la barra superior */
+}
+
+.modal-content {
+    background-color: rgba(56, 54, 54); /* Fondo del modal */
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    position: relative;
+}
+
+body.modal-open::before {
+    content: ""; /* Pseudo-elemento para capa de desenfoque */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color oscuro semi-transparente */
+    backdrop-filter: blur(20px); /* Aplica el efecto de desenfoque */
+    z-index: 1040; /* Asegura que esté detrás del modal */
+}
+
+.tipoUsuario{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.botones{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.regresar{
+    background-color: #ffffff60;
+    color: white;
+}
+.regresar:hover,
+.registrarse:hover{
+    background-color: #00dd37;
+}
+
+.registrarse{
+    background-color: #00bd2e;
+    color: white;
+}

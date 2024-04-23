@@ -9,29 +9,30 @@
 
 <div *ngIf="amortizacionAlemana.length > 0">
   <h2>Tabla de Amortización (Sistema Alemán)</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Periodo</th>
-        <th>Cuota</th>
-        <th>Interés</th>
-        <th>Capital</th>
-        <th>Saldo Restante</th>
-        <th>Cobros Indirectos</th> <!-- Nueva columna -->
-        <th>Cobros Indirectos + Cuota</th> <!-- Nueva columna -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pago of amortizacionAlemana">
-        <td>{{ pago.periodo }}</td>
-        <td>{{ pago.cuota | currency }}</td>
-        <td>{{ pago.interes | currency }}</td>
-        <td>{{ pago.capital | currency }}</td>
-        <td>{{ pago.saldoRestante | currency }}</td>
-        <td>{{ pago.cobrosIndirectos | currency }}</td> <!-- Muestra los cobros indirectos por período -->
-        <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td> <!-- Muestra la suma de cuota y cobros indirectos por período -->
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Cuota</th>
+          <th>Interés</th>
+          <th>Capital</th>
+          <th>Saldo Restante</th>
+          <th>Cobros Indirectos</th> <!-- Nueva columna -->
+          <th>Cobros Indirectos + Cuota</th> <!-- Nueva columna -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of amortizacionAlemana">
+          <td>{{ pago.periodo }}</td>
+          <td>{{ pago.cuota | currency }}</td>
+          <td>{{ pago.interes | currency }}</td>
+          <td>{{ pago.capital | currency }}</td>
+          <td>{{ pago.saldoRestante | currency }}</td>
+          <td>{{ pago.cobrosIndirectos | currency }}</td> <!-- Muestra los cobros indirectos por período -->
+          <td>{{ pago.sumaCuotaCobrosIndirectos | currency }}</td> <!-- Muestra la suma de cuota y cobros indirectos por período -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-

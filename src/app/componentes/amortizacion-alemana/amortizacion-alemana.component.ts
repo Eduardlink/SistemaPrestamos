@@ -45,18 +45,26 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
       for (let i = 1; i <= this.plazoMeses; i++) {
         const interes = saldoRestante * tasaMensual;
-        const cuota = saldoRestante / this.plazoMeses + interes;
-        saldoRestante -= saldoRestante / this.plazoMeses;
+        const amortizacion = this.montoPrestamo / this.plazoMeses; // Calculamos la amortización para este período
+        const cuota = amortizacion + interes; // La cuota es la suma de la amortización más el interés
+
+        saldoRestante -= amortizacion; // Reducimos el saldo restante por la amortización
 
         this.amortizacionAlemana.push({
           periodo: i,
           cuota: cuota.toFixed(2),
           interes: interes.toFixed(2),
-          capital: (saldoRestante / this.plazoMeses).toFixed(2),
+          amortizacion: amortizacion.toFixed(2), // Incluimos la amortización en la tabla
+          capital: saldoRestante.toFixed(2),
           saldoRestante: saldoRestante.toFixed(2),
           cobrosIndirectos: this.calcularCobrosIndirectosPorPeriodo(i).toFixed(2),
           sumaCuotaCobrosIndirectos: (cuota + this.calcularCobrosIndirectosPorPeriodo(i)).toFixed(2)
         });
+
+        // Si el saldo restante es menor o igual a 0, salimos del bucle
+        if (saldoRestante <= 0) {
+          break;
+        }
       }
     }
   }
