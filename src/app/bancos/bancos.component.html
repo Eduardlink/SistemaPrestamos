@@ -1,105 +1,131 @@
-<div class="wrapper">
-    <div class="body">
-        <h3>Modificar Información</h3>
-        <div class="form-floating mb-3 mt-3">
-            <input type="text" [(ngModel)]="nombre" class="form-control">
-            <label>Nombre</label>
+<div class="contenedor">
+    <h1>Modificar Información</h1>
+    <div class="body cuerpoInfo">
+        <div class="infoBanco">
+            <img [src]="logo" alt="Logo del banco" id="logo" />
+            <div class="mb-3 mt-3">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="nombre" class="">
+            </div>
+            <div class="mb-3">
+                <label>Logo</label>
+                <input type="text" [(ngModel)]="logo" class="">
+            </div>
+            <div class="mb-3">
+                <label>Direccion</label>
+                <input type="text" [(ngModel)]="direccion" class="">
+            </div>
+            <div class="d-grid gap-2 mb-3">
+                <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
+            </div>
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="logo" class="form-control">
-            <label>Logo</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="direccion" class="form-control">
-            <label>Direccion</label>
-        </div>
-        <div class="d-grid gap-2 mb-3">
-            <button type="button" class="btn btn-primary btn-lg" (click)="openModalPrestamo()">Prestamos</button>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="tipo" class="form-control">
-            <label>Tipo</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="tasa" class="form-control">
-            <label>Tasa Interes</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="monto_min" class="form-control">
-            <label>Monto Minimo</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="monto_max" class="form-control">
-            <label>Monto Maximo</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="detalle" class="form-control">
-            <label>Detalles</label>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Tasa Interes</th>
-                    <th>Monto Minimo</th>
-                    <th>Monto Maximo</th>
-                    <th>Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let prestamo of prestamos">
-                    <!-- Verificar si el id_Banco coincide con el del localStorage -->
-                    <ng-container *ngIf="prestamo.id_Banco === idBanco">
-                        <td>{{ prestamo.tipo }}</td>
-                        <td>{{ prestamo.tasa_interes }}</td>
-                        <td>{{ prestamo.monto_min }}</td>
-                        <td>{{ prestamo.monto_max }}</td>
-                        <td>{{ prestamo.detalles }}</td>
-                    </ng-container>
-                </tr>
-            </tbody>
-        </table>
-        
-        
-        <div class="d-grid gap-2 mb-3">
-            <button type="button" class="btn btn-primary btn-lg" (click)="openModalInversiones()">Inversiones</button>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_diario" class="form-control">
-            <label>Interes Diario</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_mensual" class="form-control">
-            <label>Interes Mensual</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="interes_anual" class="form-control">
-            <label>Interes Anual</label>
-        </div>
-        <div class="d-grid gap-2 mb-3">
-            <button type="button" class="btn btn-primary btn-lg" (click)="openModalCobros()">Cobros Indirectos</button>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Monto</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let cobro of cobros">
-                    <!-- Verificar si el id_Banco coincide con el del localStorage -->
-                    <ng-container *ngIf="cobro.id_Banco === idBanco">
-                        <td>{{ cobro.nombreCobroIndirecto }}</td>
-                        <td>{{ cobro.montoSeguro }}</td>
-                    </ng-container>
-                </tr>
-            </tbody>
-        </table>
-        
-        
-        <div class="d-grid gap-2 mb-3">
-            <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
+
+        <div class="detallesBanco">
+            <div class="inversiones">
+                <div class="encabezadoInversiones">
+                    <h2>Inversiones</h2>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="button" class="" (click)="openModalInversiones()">Agregar inversión</button>
+                    </div>
+                </div>
+                <div class=" mb-3">
+                    <label>Interes Diario</label>
+                    <input type="text" [(ngModel)]="interes_diario" class="">
+                </div>
+                <div class="mb-3">
+                    <label>Interes Mensual</label>
+                    <input type="text" [(ngModel)]="interes_mensual" class="">
+                </div>
+                <div class="mb-3">
+                    <label>Interes Anual</label>
+                    <input type="text" [(ngModel)]="interes_anual" class="">
+                </div>
+            </div>
+            <div class="prestamos">
+                <div class="encabezadoPrestamos">
+                    <h2>Prestamos</h2>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="button" class="" (click)="openModalPrestamo()">Agregar prestamo</button>
+                    </div>
+                </div>
+                <!--
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="tipo" class="form-control">
+                    <label>Tipo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="tasa" class="form-control">
+                    <label>Tasa Interes</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="monto_min" class="form-control">
+                    <label>Monto Minimo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="monto_max" class="form-control">
+                    <label>Monto Maximo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="detalle" class="form-control">
+                    <label>Detalles</label>
+                </div>
+                -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Tasa Interes</th>
+                            <th>Monto Minimo</th>
+                            <th>Monto Maximo</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prestamo of prestamos">
+                            <!-- Verificar si el id_Banco coincide con el del localStorage -->
+                            <ng-container *ngIf="prestamo.id_Banco === idBanco">
+                                <td>{{ prestamo.tipo }}</td>
+                                <td>{{ prestamo.tasa_interes }}</td>
+                                <td>{{ prestamo.monto_min }}</td>
+                                <td>{{ prestamo.monto_max }}</td>
+                                <td>{{ prestamo.detalles }}</td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cobrosIndirectos">
+                <div class="encabezadoCobros">
+                    <h2>Cobros Indirectos</h2>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="button" class="" (click)="openModalCobros()">Cobros Indirectos</button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cobro of cobros">
+                            <!-- Verificar si el id_Banco coincide con el del localStorage -->
+                            <ng-container *ngIf="cobro.id_Banco === idBanco">
+                                <td>{{ cobro.nombreCobroIndirecto }}</td>
+                                <td>{{ cobro.montoSeguro }}</td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+            
+            
+            
+            
+
         </div>
 
     </div>

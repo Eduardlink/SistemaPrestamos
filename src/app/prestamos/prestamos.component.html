@@ -1,30 +1,21 @@
 <div class="contenedor">
-  <h1>Simulador de Créditos</h1>
   <div class="formulario">
+    <h1>Simulador de Créditos</h1>
     <div class="informacionBanco" *ngIf="bancos.length > 0">
-      <h2>Banco</h2>
-      <p>Selecciona un banco</p>
-      <select (change)="onBancoSelect($event)">
-        <option value="">Selecciona un banco...</option>
-        <option *ngFor="let banco of bancos" [value]="banco.id_Banco">
-          {{ banco.nombre }}
-        </option>
-      </select>
-      <div class="logo" *ngIf="selectedBancoId">
-        <img [src]="selectedBancoLogoUrl()" alt="Logo del banco" style="max-width: 100px;">
-        <div class="texto">
-          <h3>{{ selectedBancoName() }}</h3>
-          <p>{{ selectedBancoAdress() }}</p>
-        </div>
+      <div class="ingreso">
+        <label>Selecciona un banco</label>
+        <select (change)="onBancoSelect($event)">
+          <option value="">Selecciona un banco...</option>
+          <option *ngFor="let banco of bancos" [value]="banco.id_Banco">
+            {{ banco.nombre }}
+          </option>
+        </select>
       </div>
-    </div>
-    <div class="detallePrestamo">
-      <h2>Detalle de Crédito</h2>
       <div *ngIf="selectedBancoId">
         <div *ngIf="prestamos.length > 0">
           <form class="formularioDetalle" (submit)="submitForm()">
-            <div>
-              <p>Tipo de crédito:</p>
+            <div class="ingreso">
+              <label>Tipo de crédito:</label>
               <select (change)="onPrestamoSelect($event)">
                 <option value="">Selecciona un tipo de préstamo...</option>
                 <option *ngFor="let prestamo of prestamos" [value]="prestamo.id_Prestamo">
@@ -33,19 +24,19 @@
               </select>
             </div>
             
-            <div>
+            <div class="ingreso">
               <label for="monto">Monto Solicitado:</label>
               <input type="number" id="monto" name="monto" [(ngModel)]="montoSolicitado" required>
             </div>
-            <div>
+            <div class="ingreso">
               <label for="plazo">Plazo en Meses:</label>
               <input type="number" id="plazo" name="plazo" [(ngModel)]="plazoMeses" required>
             </div>
-            <div>
+            <div class="ingreso">
               <label for="interes">Interés Anual:</label>
               <input type="text" id="interes" name="interes" [(ngModel)]="interesAnualPorcentaje" [readonly]="true">
             </div>
-            <div>
+            <div class="ingreso">
               <label for="tipoAmortizacion">Tipo de Amortización:</label>
               <select id="tipoAmortizacion" name="tipoAmortizacion" [(ngModel)]="tipoAmortizacion"
                 (change)="onTipoAmortizacionSelect($event)">
@@ -53,11 +44,10 @@
                 <option value="francesa">Amortización Francesa</option>
               </select>
             </div>
-            <button type="submit">Calcular Amortización</button>
+            <button type="submit" (click)="onCalcularClick()">Calcular Amortización</button>
           </form>
         </div>
       </div>
-    </div>
   </div>
   <div class="tabla">
     <div *ngIf="tipoAmortizacion === 'alemana'">

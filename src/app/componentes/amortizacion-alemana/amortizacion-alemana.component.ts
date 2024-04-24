@@ -25,6 +25,7 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
   @ViewChild('cobrosIndirectosSection') cobrosIndirectosSection!: ElementRef;
   @ViewChild('amortizacionTable') amortizacionTable!: ElementRef;
+  @ViewChild('htmlData') htmlData!: ElementRef;
 
   constructor(private cobrosIndirectosService: CobrosIndirectosService) {}
 
@@ -135,25 +136,33 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
   // Método para generar el archivo PDF desde la tabla HTML
   generarPDF(): void {
-    const doc = new jsPDF();
-
-    // Capturar secciones HTML como imágenes
-    html2canvas(this.cobrosIndirectosSection.nativeElement).then((canvas1) => {
-      const imgData1 = canvas1.toDataURL('image/png');
-
-      html2canvas(this.amortizacionTable.nativeElement).then((canvas2) => {
-        const imgData2 = canvas2.toDataURL('image/png');
-
-        // Agregar imágenes al documento PDF
-        const imgWidth = doc.internal.pageSize.getWidth(); // Ancho de página
-        const imgHeight = doc.internal.pageSize.getHeight(); // Alto de página
-
-        doc.addImage(imgData1, 'PNG', 10, 10, imgWidth - 20, imgHeight / 10);
-        doc.addImage(imgData2, 'PNG', 10, 50, imgWidth - 20, imgHeight / 3);
-
-        // Descargar el PDF
-        doc.save('amortizacion_alemana.pdf');
+    if (this.htmlData && this.htmlData.nativeElement) {
+      const DATA: any = this.htmlData.nativeElement;
+  
+      // Crear un nuevo documento PDF con opciones
+      const doc = new jsPDF('p', 'pt', 'a4');
+  
+      // Definir las opciones de renderizado HTML
+      const options = {
+        background: 'white',
+        scale: 1
+      };
+  
+      // Agregar el contenido HTML al documento PDF con las opciones
+      doc.html(DATA, {
+        ...options,
+        callback: (pdf) => {
+          if (pdf) {
+            doc.save('amortizacion.pdf');
+          } else {
+            console.error('Error al generar el PDF.');
+          }
+        },
+        x: 10,
+        y: 10,
       });
-    });
+    } else {
+      console.error('Elemento htmlData no está disponible.');
+    }
   }
 }

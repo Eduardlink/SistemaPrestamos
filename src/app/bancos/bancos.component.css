@@ -1,3 +1,67 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../assets/fondoPrincipal.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: calc(100vh - 70px);
+    width: auto;
+}
+
+.cuerpoInfo{
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 30px;
+}
+
+.infoBanco,
+.inversiones,
+.prestamos,
+.cobrosIndirectos{
+    background-color: aliceblue;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoBanco *,
+.inversiones *,
+.prestamos *,
+.cobrosIndirectos *{
+    width: 100%;
+}
+
+img{
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+.encabezadoInversiones,
+.encabezadoPrestamos,
+.encabezadoCobros{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.table[_ngcontent-ng-c3434628697] th[_ngcontent-ng-c3434628697] {
+    background-color: #0000007d;
+    color: #fff;
+}
+
+.table>:not(caption)>*>* {
+    background-color: #0000007d;
+    color: #fff;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;

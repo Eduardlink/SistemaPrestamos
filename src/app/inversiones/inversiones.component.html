@@ -1,18 +1,20 @@
-<div class="container">
-    <h2>Formulario de Inversión</h2>
+<div class="contenedor">
+  <div class="formulario">
+
+    <h1>Formulario de Inversión</h1>
     <form (ngSubmit)="submitForm()">
-      <div>
+      <div class="ingreso">
         <label for="banco">Selecciona un banco:</label>
         <select id="banco" name="banco" [(ngModel)]="selectedBancoId" required>
           <option value="">Selecciona un banco...</option>
           <option *ngFor="let banco of bancos" [value]="banco.id_Banco">{{ banco.nombre }}</option>
         </select>
       </div>
-      <div>
+      <div class="ingreso">
         <label for="monto">Monto a Invertir:</label>
         <input type="number" id="monto" name="monto" [(ngModel)]="montoInvertir" required>
       </div>
-      <div>
+      <div class="ingreso">
         <label for="plazo">Plazo:</label>
         <select id="plazo" name="plazo" [(ngModel)]="tipoPlazo" required>
           <option value="">Selecciona el plazo...</option>
@@ -27,8 +29,8 @@
       </div>
       <button type="submit">Invertir</button>
     </form>
-  
-    <div *ngIf="valorFinal !== undefined">
+
+    <div *ngIf="valorFinal !== undefined" class="inversion">
       <h3>Detalle de la Inversión</h3>
       <div>
         <p>Valor Final de la Inversión: {{ valorFinal | currency }}</p>
@@ -36,4 +38,4 @@
       </div>
     </div>
   </div>
-  
+</div>

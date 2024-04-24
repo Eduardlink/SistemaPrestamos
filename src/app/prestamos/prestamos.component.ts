@@ -6,8 +6,7 @@ import { Prestamo } from '../interfaces/prestamo';
 import { AmortizacionAlemanaComponent } from '../componentes/amortizacion-alemana/amortizacion-alemana.component';
 import { CobrosIndirectosService } from '../servicios/cobros-indirectos.service';
 import { AmortizacionFrancesaComponent } from '../componentes/amortizacion-francesa/amortizacion-francesa.component';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prestamos',
@@ -35,7 +34,8 @@ export class PrestamosComponent implements OnInit {
   constructor(
     private bancoService: BancoService,
     private prestamoService: PrestamoService,
-    private cobrosIndirectosService: CobrosIndirectosService
+    private cobrosIndirectosService: CobrosIndirectosService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -152,5 +152,13 @@ export class PrestamosComponent implements OnInit {
         cobrosIndirectos: this.cobrosIndirectos
       });
     }
+  }
+
+  onCalcularClick() {
+    this.toastr.error('Complete todos los campos.', 'Error', {
+      timeOut: 3000, 
+      progressBar: true,
+      positionClass: 'toast-top-right'
+    });
   }
 }
