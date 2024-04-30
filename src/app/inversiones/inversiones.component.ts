@@ -133,6 +133,24 @@ export class InversionesComponent implements OnInit {
   }
   
   
+  validarMontoInvertir() {
+    const minMonto = 1;
+    const maxMonto = 1000000;
+  
+    if (this.montoInvertir !== undefined && this.montoInvertir !== null) {
+      // Verificar si el valor está por debajo del mínimo
+      if (this.montoInvertir < minMonto) {
+        this.montoInvertir = minMonto;
+        this.toastr.warning(`El monto mínimo permitido es ${minMonto}.`);
+      }
+      // Verificar si el valor está por encima del máximo
+      else if (this.montoInvertir > maxMonto) {
+        this.montoInvertir = maxMonto;
+        this.toastr.warning(`El monto máximo permitido es ${maxMonto}.`);
+      }
+    }
+  }
+  
   
   
   

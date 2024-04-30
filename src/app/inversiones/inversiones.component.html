@@ -12,8 +12,9 @@
       </div>
       <div class="ingreso">
         <label for="monto">Monto a Invertir:</label>
-        <input type="number" id="monto" name="monto" [(ngModel)]="montoInvertir" required>
+        <input type="number" id="monto" name="monto" [(ngModel)]="montoInvertir" (input)="validarMontoInvertir()" required>
       </div>
+      
       <div class="ingreso">
         <label for="plazo">Plazo:</label>
         <select id="plazo" name="plazo" [(ngModel)]="tipoPlazo" (change)="onChangeTipoPlazo()" required>
