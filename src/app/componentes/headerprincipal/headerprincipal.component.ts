@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class HeaderprincipalComponent {
   @Output() cambiarPantalla = new EventEmitter<string>();
 
-  emitirCambioPantalla(pantalla: string) {
+  emitirCambioPagina(pantalla: string) {
     this.cambiarPantalla.emit(pantalla);
   }
 }

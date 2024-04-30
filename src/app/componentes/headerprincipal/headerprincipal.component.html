@@ -1,26 +1,27 @@
 <header class="header">
-    <img class="logo" src="../../assets/logo2.png" alt="Logo">
-
+    <img class="logo" src="../../assets/financial-profit.png" alt="Logo">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid justify-content-center"> <!-- Agregamos la clase justify-content-center -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a (click)="emitirCambioPantalla('pagos')" class="button nav-link">Sistema de Prestamos</a>
+                        <a (click)="emitirCambioPagina('pagos')" class="buttonNav nav-link">Sistema de Prestamos</a>
+
                     </li>
                     <li class="nav-item">
-                        <a (click)="emitirCambioPantalla('inversiones')" class="button nav-link">Sistema de
-                            Inversiones</a>
+                        <a (click)="emitirCambioPagina('inversiones')" class="buttonNav nav-link">Sistema de Inversiones</a>
+
                     </li>
                 </ul>
                 <div class="salir">
                     <nav class="nav">
                         <ul>
-                            <li><a routerLink="/login" class="button">Acceder</a></li>
+                            <li><a routerLink="/login" class="boton">Acceder</a></li>
                         </ul>
-                    </nav>
+                    </nav>                    
                 </div>
             </div>
         </div>
     </nav>
+
 </header>

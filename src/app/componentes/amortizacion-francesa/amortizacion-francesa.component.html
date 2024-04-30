@@ -3,7 +3,7 @@
     <div #htmlData>
       <div *ngIf="cobrosIndirectos.length > 0">
         <div class="encabezado">
-          <img [src]="logoBanco" alt="Logo del banco" style="max-width: 100px" />
+          <img [src]="logoBanco" alt="Logo del banco" style="border-radius: 20px; max-width: 100px" />
           <p>{{ nombreBanco }}</p>
         </div>
         <hr class="solid">
@@ -67,6 +67,8 @@
 
 
     </div>
-    <button (click)="generarPDF()">Descargar PDF</button>
+    <div class="botonPDF">
+      <button (click)="generarPDF()">Descargar PDF</button>
+    </div>
   </div>
 </div>

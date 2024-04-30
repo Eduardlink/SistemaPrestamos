@@ -1,8 +1,12 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CobrosIndirectosService } from '../../servicios/cobros-indirectos.service';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
 
+interface jsPDFWithPlugin extends jsPDF {
+  autoTable: (options: UserOptions) => jsPDF;
+}
 @Component({
   selector: 'app-amortizacion-alemana',
   templateUrl: './amortizacion-alemana.component.html',
@@ -22,9 +26,12 @@ export class AmortizacionAlemanaComponent implements OnInit {
   amortizacionAlemana: any[] = [];
   cobrosIndirectos: any[] = [];
   totalCobrosIndirectos: number = 0; // Variable para almacenar la suma de montos de cobros indirectos
+  tablaAmortizacionData: any[] = [];
+
+  
 
   @ViewChild('cobrosIndirectosSection') cobrosIndirectosSection!: ElementRef;
-  @ViewChild('amortizacionTable') amortizacionTable!: ElementRef;
+  @ViewChild('encabezadoDocumento') encabezadoDocumento!: ElementRef;
   @ViewChild('htmlData') htmlData!: ElementRef;
 
   constructor(private cobrosIndirectosService: CobrosIndirectosService) {}
@@ -87,9 +94,11 @@ export class AmortizacionAlemanaComponent implements OnInit {
 
   // Función para calcular la tabla de amortización en el sistema alemán
   calcularAmortizacionAlemana(): void {
+    this.amortizacionAlemana = [];
     if (this.montoPrestamo && this.plazoMeses && this.tasaInteresAnual) {
       const tasaMensual = this.tasaInteresAnual / 12;
       let saldoRestante = this.montoPrestamo;
+      const amortizacionData: any[] = [];
 
       for (let i = 1; i <= this.plazoMeses; i++) {
         const interes = saldoRestante * tasaMensual;
@@ -113,10 +122,23 @@ export class AmortizacionAlemanaComponent implements OnInit {
           ).toFixed(2),
         });
 
+        amortizacionData.push([
+          i,
+          cuota.toFixed(2),
+          interes.toFixed(2),
+          amortizacion.toFixed(2),
+          saldoRestante.toFixed(2),
+          saldoRestante.toFixed(2),
+          cobrosIndirectosPorPeriodo.toFixed(2),
+          (cuota + cobrosIndirectosPorPeriodo).toFixed(2),
+        ]);
+
         if (saldoRestante <= 0) {
           break;
         }
       }
+      // Asignar los datos de la tabla a la variable del componente
+      this.tablaAmortizacionData = amortizacionData;
     }
   }
 
@@ -135,34 +157,47 @@ export class AmortizacionAlemanaComponent implements OnInit {
   }
 
   // Método para generar el archivo PDF desde la tabla HTML
+  
   generarPDF(): void {
-    if (this.htmlData && this.htmlData.nativeElement) {
-      const DATA: any = this.htmlData.nativeElement;
+    const doc = new jsPDF('p', 'pt', 'a4') as jsPDFWithPlugin;
+
+    //agrega aqui un elemento usando html2canvas
   
-      // Crear un nuevo documento PDF con opciones
-      const doc = new jsPDF('p', 'pt', 'a4');
-  
-      // Definir las opciones de renderizado HTML
-      const options = {
-        background: 'white',
-        scale: 1
-      };
-  
-      // Agregar el contenido HTML al documento PDF con las opciones
-      doc.html(DATA, {
-        ...options,
-        callback: (pdf) => {
-          if (pdf) {
-            doc.save('amortizacion.pdf');
-          } else {
-            console.error('Error al generar el PDF.');
-          }
-        },
-        x: 10,
-        y: 10,
-      });
-    } else {
-      console.error('Elemento htmlData no está disponible.');
+    doc.setFontSize(22);
+    doc.text(this.nombreBanco+"", 40, 50);
+    doc.setFontSize(18);
+    doc.text("Detalles del crédito", 40, 100);
+    let interes = this.formatTasaInteres();
+
+    doc.setFontSize(12);
+    doc.text("Tipo de crédito: " + this.tipoCredito, 40, 120);
+    doc.text("Monto: " + this.montoPrestamo, 40, 135);
+    doc.text("Interes Anual: " + interes +"%", 40, 150);
+    doc.text("Tipo de Amortización: " + this.montoPrestamo, 40, 165);
+    doc.text("Dirección del banco: " + this.direccionBanco, 40, 180);
+    
+    doc.setFontSize(14);
+    doc.text("Cobros Indirectos", 40, 215);
+    
+    doc.setFontSize(12)
+    let posicionTexto = 220;
+    for (let cobro of this.cobrosIndirectos){
+      posicionTexto += 15;
+      doc.text("Cobro Indirecto: " + cobro.nombreCobroIndirecto + ": "+ cobro.montoSeguro, 40, posicionTexto);
     }
+    
+    posicionTexto = posicionTexto + 20;
+    // Generar la tabla
+    doc.autoTable({
+      head: [['Periodo', 'Cuota', 'Interés', 'Amortización', 'Capital', 'Saldo Restante', 'Cobros Indirectos', 'Cuota + Cobros Indirectos']],
+      body: this.tablaAmortizacionData,
+      startY: posicionTexto // Establecer la posición Y de inicio de la tabla
+    });
+  
+    doc.save('amortizacionAlemana.pdf');
   }
+  
+
+  
+  
 }

@@ -13,6 +13,7 @@ import { BancoService } from '../servicios/banco.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  pantallaActual: string = 'pagos';
 
   usuario: string = '';
   contrasenia: string = '';
@@ -73,6 +74,10 @@ export class LoginComponent implements OnInit {
 
     
 
+  }
+
+  cambiarPantalla(pantalla: string) {
+    this.pantallaActual = pantalla;
   }
 
 

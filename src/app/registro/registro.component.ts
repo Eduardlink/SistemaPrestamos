@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  pantallaActual: string = 'pagos';
   adminSelected: boolean = false;
   idClienteRegistrado!: number;
 
@@ -138,7 +139,9 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-
+  cambiarPantalla(pantalla: string) {
+    this.pantallaActual = pantalla;
+  }
 
 
 }
