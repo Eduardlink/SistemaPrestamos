@@ -17,6 +17,8 @@ export class InversionesComponent implements OnInit {
   selectedBancoId: number | undefined;
   valorFinal: number | undefined;
   tasaInteres: number | undefined; // Declarar tasaInteres como propiedad
+  beneficio: number | undefined;
+  porcentajeInversion: number |undefined;
 
   constructor(
     private bancoService: BancoService,
@@ -55,7 +57,10 @@ export class InversionesComponent implements OnInit {
     
             if (this.tasaInteres !== undefined && this.montoInvertir !== undefined && this.cantidadPlazos !== undefined) {
               const base = 1 + this.tasaInteres;
-              const valorFinal = this.montoInvertir * Math.pow(base, this.cantidadPlazos);
+              this.beneficio = this.montoInvertir * this.cantidadPlazos * this.tasaInteres; 
+              const valorFinal = this.montoInvertir + this.beneficio;
+              this.porcentajeInversion = (this.tasaInteres * 100);
+
               this.valorFinal = valorFinal;
             } else {
               console.log('Error: Algunas variables no están definidas correctamente.');

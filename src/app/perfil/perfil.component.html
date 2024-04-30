@@ -1,25 +1,25 @@
-<div class="wrapper">
+<div class="contenedor">
+    <h1>Modificar Información</h1>
     <div class="body">
-        <h3>Modificar Información</h3>
-        <div class="form-floating mb-3 mt-3">
-            <input type="text" [(ngModel)]="usuario" class="form-control" placeholder="Ingrese usuario">
+        <div class="mb-3 mt-3">
             <label>Usuario</label>
+            <input type="text" [(ngModel)]="usuario" class="" placeholder="Ingrese usuario">
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese nombre">
+        <div class="mb-3">
             <label>Nombre</label>
+            <input type="text" [(ngModel)]="nombre" class="" placeholder="Ingrese nombre">
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese apellido">
+        <div class="mb-3">
             <label>Apellido</label>
+            <input type="text" [(ngModel)]="apellido" class="" placeholder="Ingrese apellido">
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="correo" class="form-control" placeholder="Ingrese correo">
+        <div class="mb-3">
             <label>Correo</label>
+            <input type="text" [(ngModel)]="correo" class="" placeholder="Ingrese correo">
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese teléfono">
+        <div class="mb-3">
             <label>Teléfono</label>
+            <input type="text" [(ngModel)]="telefono" class="" placeholder="Ingrese teléfono">
         </div>
         <div class="d-grid gap-2 mb-3">
             <button type="button" class="btn btn-success btn-lg" (click)="updatePerfil()">Modificar</button>

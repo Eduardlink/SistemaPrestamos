@@ -1,31 +1,29 @@
 <div class="contenedor">
     <h1>Modificar Información</h1>
     <div class="body cuerpoInfo">
-        <div class="infoBanco">
-            <img [src]="logo" alt="Logo del banco" id="logo" />
-            <div class="mb-3 mt-3">
-                <label>Nombre</label>
-                <input type="text" [(ngModel)]="nombre" class="">
-            </div>
-            <div class="mb-3">
-                <label>Logo</label>
-                <input type="text" [(ngModel)]="logo" class="">
-            </div>
-            <div class="mb-3">
-                <label>Direccion</label>
-                <input type="text" [(ngModel)]="direccion" class="">
-            </div>
-            <div class="d-grid gap-2 mb-3">
-                <button type="button" class="btn btn-success btn-lg" (click)="updateBanco()">Modificar</button>
-            </div>
-        </div>
+        <div>
+            <div class="infoBanco">
+                <img [src]="logo" alt="Logo del banco" id="logo" />
+                <div class="mb-3 mt-3">
+                    <label>Nombre</label>
+                    <input type="text" [(ngModel)]="nombre" class="">
+                </div>
+                <div class="mb-3">
+                    <label>Logo</label>
+                    <input type="text" [(ngModel)]="logo" class="">
+                </div>
+                <div class="mb-3">
+                    <label>Direccion</label>
+                    <input type="text" [(ngModel)]="direccion" class="">
+                </div>
 
-        <div class="detallesBanco">
+            </div>
+
             <div class="inversiones">
                 <div class="encabezadoInversiones">
                     <h2>Inversiones</h2>
                     <div class="d-grid gap-2 mb-3">
-                        <button type="button" class="" (click)="openModalInversiones()">Agregar inversión</button>
+                        <button type="button" class="botonInversion" *ngIf="interes_diario === 0 && interes_mensual === 0 && interes_anual === 0" (click)="openModalInversiones()">Agregar inversión</button>
                     </div>
                 </div>
                 <div class=" mb-3">
@@ -41,6 +39,10 @@
                     <input type="text" [(ngModel)]="interes_anual" class="">
                 </div>
             </div>
+
+        </div>
+
+        <div class="detallesBanco">
             <div class="prestamos">
                 <div class="encabezadoPrestamos">
                     <h2>Prestamos</h2>
@@ -129,41 +131,44 @@
         </div>
 
     </div>
+    <div class="d-grid gap-2 mb-3">
+        <button type="button" class="botonActualizar" (click)="updateBanco()">Actualizar información</button>
+    </div>
 </div>
 
 <div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
-            <div class="p-4">
-                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Prestamo</h1>
+            <div class="">
+                <h1 class="tituloModal" id="exampleModalToggleLabel">Registro Prestamo</h1>
             </div>
             <div class="body">
-                <div class="form-floating mb-3 mt-3">
-                    <input type="text" [(ngModel)]="tipoM" class="form-control">
+                <div class="ingresoModal mb-3 mt-3">
                     <label for="tipoM">Tipo</label>
+                    <input type="text" [(ngModel)]="tipoM" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="tasaM" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="tasaM">Tasa Interes</label>
+                    <input type="text" [(ngModel)]="tasaM" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="montoMin" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="montoMin">Monto Minimo</label>
+                    <input type="text" [(ngModel)]="montoMin" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="montoMax" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="montoMax">Monto Maximo</label>
+                    <input type="text" [(ngModel)]="montoMax" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="detalleM" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="detalleM">Detalles</label>
+                    <input type="text" [(ngModel)]="detalleM" class="">
                 </div>
 
             </div>
-            <div class="p-4">
-                <button type="button" class="btn btn-primary" (click)="addPrestamos()">Guardar</button>
-                <button type="button" class="btn btn-primary" (click)="closeModalPrestamo()">Cerrar</button>
+            <div class="p-2 botonesModal">
+                <button type="button" class="" (click)="addPrestamos()">Guardar</button>
+                <button type="button" class="" (click)="closeModalPrestamo()">Cerrar</button>
             </div>
         </div>
     </div>
@@ -173,26 +178,26 @@
     tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
-            <div class="p-4">
-                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Inversiones</h1>
+            <div class="p-2">
+                <h1 class="tituloModal" id="exampleModalToggleLabel">Registro Inversiones</h1>
             </div>
             <div class="body">
-                <div class="form-floating mb-3 mt-3">
-                    <input type="text" [(ngModel)]="interesD" class="form-control">
+                <div class="mb-3 mt-3 ingresoModal">
                     <label for="interesD">Interes Diario</label>
+                    <input type="text" [(ngModel)]="interesD" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="interesM" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="interesM">Interes Mensual</label>
+                    <input type="text" [(ngModel)]="interesM" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="interesA" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="interesA">Interes Anual</label>
+                    <input type="text" [(ngModel)]="interesA" class="">
                 </div>
             </div>
-            <div class="p-4">
-                <button type="button" class="btn btn-primary" (click)="addInversiones()">Guardar</button>
-                <button type="button" class="btn btn-primary" (click)="closeModalInversiones()">Cerrar</button>
+            <div class="p-2 botonesModal">
+                <button type="button" class="" (click)="addInversiones()">Guardar</button>
+                <button type="button" class="" (click)="closeModalInversiones()">Cerrar</button>
             </div>
         </div>
     </div>
@@ -203,23 +208,23 @@
     tabindex="-1">
     <div class="modal-dialog custom-modal-size">
         <div class="modal-content">
-            <div class="p-4">
-                <h1 class="modal-title fs-6" id="exampleModalToggleLabel">Registro Cobros</h1>
+            <div class="">
+                <h1 class="tituloModal" id="exampleModalToggleLabel">Registro Cobros</h1>
             </div>
             <div class="body">
-                <div class="form-floating mb-3 mt-3">
-                    <input type="text" [(ngModel)]="nombreCobro" class="form-control">
+                <div class="ingresoModal mb-3 mt-3">
                     <label for="nombreCobro">Nombre</label>
+                    <input type="text" [(ngModel)]="nombreCobro" class="">
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" [(ngModel)]="montoCobro" class="form-control">
+                <div class="ingresoModal mb-3">
                     <label for="montoCobro">Monto</label>
+                    <input type="text" [(ngModel)]="montoCobro" class="">
                 </div>
 
             </div>
-            <div class="p-4">
-                <button type="button" class="btn btn-primary" (click)="addCobrosIndirectos()">Guardar</button>
-                <button type="button" class="btn btn-primary" (click)="closeModalCobros()">Cerrar</button>
+            <div class="p-2 botonesModal">
+                <button type="button" class="" (click)="addCobrosIndirectos()">Guardar</button>
+                <button type="button" class="" (click)="closeModalCobros()">Cerrar</button>
             </div>
         </div>
     </div>

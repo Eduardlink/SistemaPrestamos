@@ -1,7 +1,7 @@
 <div class="contenedor">
+  <h1>Formulario de Inversión</h1>
   <div class="formulario">
 
-    <h1>Formulario de Inversión</h1>
     <form (ngSubmit)="submitForm()">
       <div class="ingreso">
         <label for="banco">Selecciona un banco:</label>
@@ -31,10 +31,29 @@
     </form>
 
     <div *ngIf="valorFinal !== undefined" class="inversion">
-      <h3>Detalle de la Inversión</h3>
-      <div>
-        <p>Valor Final de la Inversión: {{ valorFinal | currency }}</p>
-        <p>Tasa de Interés Utilizada: {{ tasaInteres }}</p>
+      <div class="encabezadoInversion">
+        <div>
+          <h3>Detalle Inversión</h3>
+        </div>
+        <div class="tasaInteres">
+          <p>Tasa de Interés</p>
+          <p>{{ porcentajeInversion }}%</p>
+        </div>
+      </div>
+      <div class="detalleInversion">
+        <div>
+          <p>Valor Final de la Inversión</p>
+          <p class="valor"> {{ montoInvertir | currency }}</p>
+        </div>
+        <div>
+          <p>Beneficio: </p>
+          <p class="valor">{{ beneficio | currency}}</p>
+        </div>
+        <hr class="solid">
+        <div>
+          <p>Valor Final de la Inversión:</p>
+            <p class="valor">{{ valorFinal | currency }}</p>
+        </div>
       </div>
     </div>
   </div>

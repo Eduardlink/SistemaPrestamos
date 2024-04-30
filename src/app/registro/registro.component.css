@@ -24,9 +24,14 @@
 .registro{
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
-    padding: 20px;
+    padding: 25px 50px;
     border-radius: 15px;
     color: white;
+    width: 50vw;
+}
+
+.registro *{
+    width: 100%;
 }
 
 .body{
@@ -52,14 +57,8 @@ label {
 .registro input[type="password"],
 .registro input[type="email"],
 .registro input[type="tel"] {
-    width: 500px;
-    padding: 10px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
+    width: 100%;
     box-sizing: border-box;
-    max-width: 500px;
 }
 .formularioRegistro input[type="text"],
 .formularioRegistro input[type="password"],
@@ -140,9 +139,12 @@ body.modal-open::before {
 }
 
 .botones{
-    width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.botones div{
+    width: 47%;
 }
 
 button {
@@ -154,8 +156,8 @@ button {
 
 
 .regresar{
-    background-color: #ffffff60;
-    color: white;
+    background-image: linear-gradient(30deg, #919693, #c6c8c6) !important;
+    color: #000 !important;
 }
 .regresar:hover,
 .registrarse:hover{

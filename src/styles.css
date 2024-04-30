@@ -6,6 +6,7 @@
 
 h1, h2, h3{
     font-family: "Raleway", sans-serif;
+    color: #fff !important;  
 }
 
 p{
@@ -16,8 +17,8 @@ input, select{
     border-radius: 10px;
     height: 50px;
     border: none;
-    background-color: #0000005d;
-    color: #fff;
+    background-color: #00000091;
+    color: #fff !important;
     padding: 10px;
 }
 

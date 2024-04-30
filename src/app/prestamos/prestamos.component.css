@@ -6,12 +6,12 @@
     background-image: url(../../assets/fondoPrincipal.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
     width: auto;
+    padding-top: 70px;
 }
 
 .formulario{
-    margin-top: 70px;
     margin-bottom: 70px;
     background-color: aliceblue;
     min-width: 50vw;
@@ -27,6 +27,8 @@
 
 h1{
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 input, select{

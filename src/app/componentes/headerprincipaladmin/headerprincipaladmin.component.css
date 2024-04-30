@@ -8,6 +8,8 @@
     display: flex;
     justify-content: space-between;
     padding: 0px;
+    position: fixed;
+    z-index: 20;
 }
 
 .logo {
@@ -23,31 +25,30 @@
 
 }
 
-.nav ul li a.button {
+.buttonNav {
     color: white; /* Cambia el color del texto del botón según tus preferencias */
-    background-color: #01812e; /* Cambia el color de fondo del botón */
-    padding: 8px 16px; /* Ajusta el espacio interno del botón según tus preferencias */
-    border-radius: 4px; /* Añade esquinas redondeadas al botón */
+    padding: 10px; /* Ajusta el espacio interno del botón según tus preferencias */
+    border-radius: 10px; /* Añade esquinas redondeadas al botón */
     text-decoration: none;
     margin: 20px;
-}
-
-.nav ul li a.button:hover {
-    background-color: #016339; /* Cambia el color de fondo del botón al pasar el ratón sobre él */
-}
-
-.button {
-    /* Estilos por defecto */
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 5px;
     cursor: pointer;
-    border-radius: 10px;
 }
 
-.button:hover {
-    background-color: #018753;
-    border-radius: 10px;
+.buttonNav:hover {
+    background-color: #00bd2e;
 }
 
+.boton{
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    transition: background-color 0.3s ease;
+    padding: 10px; 
+    text-decoration: none;
+}
+
+.boton:hover{
+    background-color: #00dd37;
+}
