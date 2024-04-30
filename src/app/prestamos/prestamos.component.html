@@ -26,12 +26,13 @@
             
             <div class="ingreso">
               <label for="monto">Monto Solicitado:</label>
-              <input type="number" id="monto" name="monto" [(ngModel)]="montoSolicitado" required>
-            </div>
+              <input type="number" id="monto" name="monto" [(ngModel)]="montoSolicitado" required (focus)="mostrarRango()">
+            </div>      
             <div class="ingreso">
               <label for="plazo">Plazo en Meses:</label>
-              <input type="number" id="plazo" name="plazo" [(ngModel)]="plazoMeses" required>
+              <input type="number" id="plazo" name="plazo" [(ngModel)]="plazoMeses" required (input)="validarPlazo()">
             </div>
+            
             <div class="ingreso">
               <label for="interes">Interés Anual:</label>
               <input type="text" id="interes" name="interes" [(ngModel)]="interesAnualPorcentaje" [readonly]="true">
