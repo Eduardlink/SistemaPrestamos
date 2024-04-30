@@ -21,7 +21,11 @@ export class InversionesComponent implements OnInit {
   tasaInteres: number | undefined; // Declarar tasaInteres como propiedad
   beneficio: number | undefined;
   porcentajeInversion: number |undefined;
+  
+  //////////////
 
+  maxCantidadPlazos: number | null = 120;
+  maxAnios: number | null = 15;
   constructor(
     private bancoService: BancoService,
     private inversionService: InversionService,
@@ -85,5 +89,51 @@ export class InversionesComponent implements OnInit {
       // Aquí puedes continuar con tu lógica de inversión
     }
   }
+
+  onChangeTipoPlazo() {
+    switch (this.tipoPlazo) {
+      case 'diario':
+        this.maxCantidadPlazos = 160;
+        this.maxAnios = null;
+        break;
+      case 'mensual':
+        this.maxCantidadPlazos = 120;
+        this.maxAnios = null;
+        break;
+      case 'anual':
+        this.maxCantidadPlazos = null;
+        this.maxAnios = 15;
+        break;
+      default:
+        this.maxCantidadPlazos = null;
+        this.maxAnios = null;
+        break;
+    }
+  }
+
+  validarCantidadPlazos() {
+    if (this.cantidadPlazos !== undefined && this.cantidadPlazos !== null) {
+      if (this.tipoPlazo === 'diario') {
+        if (this.maxCantidadPlazos !== null && this.cantidadPlazos > this.maxCantidadPlazos) {
+          this.toastr.warning(`Solo se permite un máximo de ${this.maxCantidadPlazos} días.`);
+        }
+      } else if (this.tipoPlazo === 'mensual') {
+        if (this.maxCantidadPlazos !== null && this.cantidadPlazos > this.maxCantidadPlazos) {
+          this.toastr.warning(`Solo se permite un máximo de ${this.maxCantidadPlazos} meses.`);
+        }
+      } else if (this.tipoPlazo === 'anual') {
+        if (this.maxAnios !== null) {
+          const totalMeses = this.cantidadPlazos;
+          if (totalMeses > this.maxAnios * 12) {
+            this.toastr.warning(`Solo se permite un máximo de ${this.maxAnios} años (${this.maxAnios * 12} meses).`);
+          }
+        }
+      }
+    }
+  }
+  
+  
+  
+  
   
 }

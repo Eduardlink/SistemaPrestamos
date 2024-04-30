@@ -16,17 +16,19 @@
       </div>
       <div class="ingreso">
         <label for="plazo">Plazo:</label>
-        <select id="plazo" name="plazo" [(ngModel)]="tipoPlazo" required>
+        <select id="plazo" name="plazo" [(ngModel)]="tipoPlazo" (change)="onChangeTipoPlazo()" required>
           <option value="">Selecciona el plazo...</option>
           <option value="diario">Diario</option>
           <option value="mensual">Mensual</option>
           <option value="anual">Anual</option>
         </select>
       </div>
+      
       <div>
         <label for="cantidadPlazos">Cantidad de Plazos:</label>
-        <input type="number" id="cantidadPlazos" name="cantidadPlazos" [(ngModel)]="cantidadPlazos" required>
+        <input type="number" id="cantidadPlazos" name="cantidadPlazos" [(ngModel)]="cantidadPlazos" (input)="validarCantidadPlazos()" required>
       </div>
+      
       <button type="submit" (click)="toastInversion()">Invertir</button>
     </form>
 
