@@ -11,7 +11,7 @@ import { BancosComponent } from './bancos/bancos.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/principal',
     pathMatch: 'full'
   },
   {

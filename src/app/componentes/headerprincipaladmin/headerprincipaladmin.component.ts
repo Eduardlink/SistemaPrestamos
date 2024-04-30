@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-headerprincipaladmin',
@@ -11,5 +12,14 @@ export class HeaderprincipaladminComponent {
   emitirCambioPantalla(pantalla: string) {
     this.cambiarPantalla.emit(pantalla);
   }
+  constructor(private router: Router) { }
+
+  cerrarSesion() {
+    // Limpiar el localStorage
+    localStorage.clear();
+
+    // Redirigir al usuario a la página de inicio de sesión u otra página deseada
+    this.router.navigate(['/principal']); // Reemplaza '/login' con la ruta de tu página de inicio de sesión
+}
 }
 

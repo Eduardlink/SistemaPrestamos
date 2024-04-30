@@ -26,7 +26,7 @@ export class RegistroComponent implements OnInit {
   apellido: string = '';
   correo: string = '';
   telefono: string = '';
-  rol: string = '';
+  rol: string = 'Admin';
   idBancoRegistrado: number = 0;
 
   id_Banco!: number;
@@ -129,6 +129,7 @@ export class RegistroComponent implements OnInit {
         this.idBancoRegistrado = v.id;
         console.log(banco);
         
+        this.router.navigate(['/login']);
           
       },
       error: (e: HttpErrorResponse) => {
