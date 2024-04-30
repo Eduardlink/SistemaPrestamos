@@ -155,10 +155,12 @@ export class PrestamosComponent implements OnInit {
   }
 
   onCalcularClick() {
-    this.toastr.error('Complete todos los campos.', 'Error', {
-      timeOut: 3000, 
-      progressBar: true,
-      positionClass: 'toast-top-right'
-    });
+    if (!this.montoSolicitado || !this.plazoMeses || !this.interesAnualPorcentaje) {
+      this.toastr.error('Por favor, complete todos los campos.');
+    } else {
+      this.toastr.success('Datos completos. Realizando cálculos...');
+      // Aquí puedes continuar con tus cálculos
+    }
   }
+  
 }

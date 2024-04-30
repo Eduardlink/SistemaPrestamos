@@ -4,6 +4,8 @@ import { InversionService } from '../servicios/inversion.service';
 import { Banco } from '../interfaces/banco';
 import { Inversion } from '../interfaces/inversion';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-inversiones',
   templateUrl: './inversiones.component.html',
@@ -22,7 +24,8 @@ export class InversionesComponent implements OnInit {
 
   constructor(
     private bancoService: BancoService,
-    private inversionService: InversionService
+    private inversionService: InversionService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -73,4 +76,14 @@ export class InversionesComponent implements OnInit {
       console.log('Por favor completa todos los campos.');
     }
   }
+
+  toastInversion() {
+    if (!this.selectedBancoId || !this.montoInvertir || !this.tipoPlazo || !this.cantidadPlazos) {
+      this.toastr.error('Por favor, complete todos los campos.');
+    } else {
+      this.toastr.success('Datos completos. Realizando inversión...');
+      // Aquí puedes continuar con tu lógica de inversión
+    }
+  }
+  
 }
