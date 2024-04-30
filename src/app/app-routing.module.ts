@@ -7,6 +7,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { TiposPrestamosComponent } from './tipos-prestamos/tipos-prestamos.component';
 import { InversionesComponent } from './inversiones/inversiones.component';
 import { BancosComponent } from './bancos/bancos.component';
+import { AccesoComponent } from './acceso/acceso.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,14 @@ const routes: Routes = [
   {
     path:"bancos",
     component: BancosComponent
+  },
+  {
+    path:"bancos",
+    component: BancosComponent
+  },
+  {
+    path:"acceso",
+    component: AccesoComponent
   }
 ];
 

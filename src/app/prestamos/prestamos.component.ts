@@ -63,10 +63,23 @@ export class PrestamosComponent implements OnInit {
   }
 
   onBancoSelect(event: Event) {
-    const selectedValue = (event.target as HTMLSelectElement).value;
-    this.selectedBancoId = selectedValue ? parseInt(selectedValue, 10) : undefined;
-    this.getPrestamosByBancoId();  // Llamar a getPrestamosByBancoId() al seleccionar un banco
+    // Verificar si event.target es nulo y si es un HTMLSelectElement
+    if (event.target instanceof HTMLSelectElement) {
+      const selectedValue = event.target.value;
+      this.selectedBancoId = selectedValue ? parseInt(selectedValue, 10) : undefined;
+      this.getPrestamosByBancoId();  // Llamar a getPrestamosByBancoId() al seleccionar un banco
+  
+      // Verificar si se ha seleccionado un banco válido
+      if (selectedValue) {
+        // Almacenar el id_Banco seleccionado en el localStorage
+        localStorage.setItem('id_Banco', selectedValue);
+      } else {
+        // Si no se selecciona un banco válido, eliminar el id_Banco del localStorage
+        localStorage.removeItem('id_Banco');
+      }
+    }
   }
+  
 
 
   getPrestamosByBancoId(): void {
@@ -177,6 +190,7 @@ export class PrestamosComponent implements OnInit {
   }
 
   mostrarRango() {
+    this.idBanco = Number(localStorage.getItem('id_Banco'));
     this.prestamoService.getPrestamoByClienteId(this.idBanco).subscribe(
       (prestamo: Prestamo) => {
         const monto_min = prestamo.monto_min;

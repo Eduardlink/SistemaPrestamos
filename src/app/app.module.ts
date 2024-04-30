@@ -28,6 +28,7 @@ import { HeaderprincipaladminComponent } from './componentes/headerprincipaladmi
 import { BancosComponent } from './bancos/bancos.component';
 import { AmortizacionAlemanaComponent } from './componentes/amortizacion-alemana/amortizacion-alemana.component';
 import { AmortizacionFrancesaComponent } from './componentes/amortizacion-francesa/amortizacion-francesa.component';
+import { AccesoComponent } from './acceso/acceso.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { AmortizacionFrancesaComponent } from './componentes/amortizacion-france
     HeaderprincipaladminComponent,
     BancosComponent,
     AmortizacionAlemanaComponent,
-    AmortizacionFrancesaComponent
+    AmortizacionFrancesaComponent,
+    AccesoComponent
   ],
   imports: [
     BrowserModule,

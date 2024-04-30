@@ -16,7 +16,12 @@
                 <div class="salir">
                     <nav class="nav">
                         <ul>
-                            <li><a routerLink="/login" class="boton">Acceder</a></li>
+                            <li> 
+                                <a (click)="emitirCambioPagina('login')" class="buttonNav nav-link">Acceder</a>
+                            </li>
+                            <li> 
+                                <a (click)="emitirCambioPagina('registro')" class="buttonNav nav-link">Registro</a>
+                            </li>
                         </ul>
                     </nav>                    
                 </div>

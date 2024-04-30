@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RegistroService } from '../servicios/registro.service';
 import { ToastrService } from 'ngx-toastr';
 import { Registro } from '../interfaces/registro';
@@ -28,6 +28,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _bancoService: BancoService) { }
 
+    @Output() cambiarPantalla = new EventEmitter<string>();
+
+    emitirCambioPagina(pantalla: string) {
+      this.cambiarPantalla.emit(pantalla);
+    }
+
+    
 
   ngOnInit(): void {
   }
@@ -65,6 +72,7 @@ export class LoginComponent implements OnInit {
 
         // Mostrar un mensaje de éxito
         this.toastr.success(`Bienvenido, ${data.usuario}`, 'Exito');
+        window.location.reload();
       } else {
         this.toastr.error('El correo o la contraseña son incorrectos', 'Error');
       }
@@ -76,9 +84,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  cambiarPantalla(pantalla: string) {
-    this.pantallaActual = pantalla;
-  }
+
 
 
 }

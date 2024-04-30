@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Registro } from '../interfaces/registro';
 import { ToastrService } from 'ngx-toastr';
@@ -50,9 +50,27 @@ export class RegistroComponent implements OnInit {
   regresar() {
     // Navega de vuelta a la página anterior
     this.location.back();
-}
+  }
 
   addRegistro() {
+    // Verificar si todos los campos obligatorios están llenos
+    if (this.usuario == '' || this.contrasenia == '' || this.nombre == '' || this.apellido == '' || this.correo == '' || this.telefono == '' || this.rol == '') {
+      this.toastr.error('Por favor, complete todos los campos para registrar un usuario', 'Error');
+      return;
+    }
+    //validar que el correo sea valido
+    const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    if (!pattern.test(this.correo)) {
+      this.toastr.error('Por favor, ingrese un correo electrónico válido.', 'Correo Inválido');
+      return;
+    }
+    // Validar que el teléfono contenga solo números
+    const phonePattern = /^[0-9]*$/;
+    if (!phonePattern.test(this.telefono)) {
+      this.toastr.error('Por favor, ingrese solo números en el campo de teléfono.', 'Teléfono Inválido');
+      return;
+    }
+
 
     if (this.rol === 'Admin') {
       const modal = document.getElementById('exampleModalToggle');
@@ -63,10 +81,6 @@ export class RegistroComponent implements OnInit {
       }
     }
 
-    if (this.usuario == '' || this.contrasenia == '' || this.nombre == '' || this.apellido == '' || this.correo == '' || this.telefono == '' || this.rol == '') {
-      this.toastr.error('Por favor, complete todos los campos para registrar un usuario', 'Error');
-      return;
-    }
     const registro: Registro = {
       usuario: this.usuario,
       contrasenia: this.contrasenia,
@@ -77,12 +91,7 @@ export class RegistroComponent implements OnInit {
       rol: this.rol
     }
 
-    //validar que el correo sea valido
-    /* const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    if (!pattern.test(this.correo)) {
-      this.toastr.error('El correo no es valido', 'Error');
-      return;
-    } */
+
     this._registroService.signIn(registro).subscribe({
       next: (response: any) => {
         this.toastr.success(`El usuario ${this.usuario} fue registrado con exito`, 'Usuario Registrado');
@@ -96,6 +105,7 @@ export class RegistroComponent implements OnInit {
   }
 
 
+
   closeModal() {
     const modal = document.getElementById('exampleModalToggle');
     if (modal) {
@@ -106,17 +116,12 @@ export class RegistroComponent implements OnInit {
   }
 
   addBanco() {
-    // Verificar que se haya registrado un cliente antes de agregar un banco
-    if (this.idClienteRegistrado === 0) {
-      this.toastr.error('Por favor, registra un usuario antes de agregar un banco', 'Error');
-      return;
-    }
-
-    if (this.nombreB == '' || this.logo == '' || this.direccion == '') {
+    // Verificar si todos los campos obligatorios están llenos
+    if (!this.nombreB || !this.logo || !this.direccion) {
       this.toastr.error('Por favor, complete todos los campos para registrar un banco', 'Error');
       return;
     }
-
+    // Si todos los campos están llenos, continuar con el registro del banco
     const banco: Banco2 = {
       nombre: this.nombreB,
       logo: this.logo,
@@ -129,9 +134,13 @@ export class RegistroComponent implements OnInit {
         this.toastr.success(`El banco ${this.nombreB} fue registrado con éxito`, 'Banco Registrado');
         this.idBancoRegistrado = v.id;
         console.log(banco);
-        
-        this.router.navigate(['/login']);
-          
+
+        // Navegar a la página principal
+        this.router.navigate(['/principal']);
+
+        // Cerrar el modal
+        this.closeModal();
+        window.location.reload();
       },
       error: (e: HttpErrorResponse) => {
         this.toastr.error('Error al registrar el banco', 'Error');
@@ -139,9 +148,9 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  cambiarPantalla(pantalla: string) {
-    this.pantallaActual = pantalla;
-  }
+
+
+
 
 
 }

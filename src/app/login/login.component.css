@@ -59,3 +59,19 @@ a{
 h1{
     color: #fff;
 }
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.buttonNav {
+    color: white; /* Cambia el color del texto del botón según tus preferencias */
+    padding: 10px; /* Ajusta el espacio interno del botón según tus preferencias */
+    border-radius: 10px; /* Añade esquinas redondeadas al botón */
+    text-decoration: none;
+    margin: 20px;
+    cursor: pointer;
+}
