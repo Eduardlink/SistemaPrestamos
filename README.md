@@ -1,5 +1,6 @@
 # SistemaPrestamos
-
+<img src="https://github.com/Eduardlink/SistemaPrestamos/assets/109778441/e8119dd1-d409-4bee-b8bc-96dca0ad9797">
+<br>
 Sitema de simulación de prestamos usando tablas de amortizacion alemana y francesa. Sistema multi-usuario que permite el registro de varios bancos, y de la misma manera permite registrar varios valores de intereses.
 
 ### Usuario 
