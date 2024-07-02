@@ -195,7 +195,7 @@ export class PrestamosComponent implements OnInit {
       (prestamo: Prestamo) => {
         const monto_min = prestamo.monto_min;
         const monto_max = prestamo.monto_max;
-        this.toastr.info(`El rango de Monto Solicitado es de: ${monto_min} a ${monto_max}`, 'Rango de préstamo');
+        this.toastr.info(`El rango de Monto Solicitado es de: ${monto_min} a ${monto_max}`, 'Rango de préstamo.');
       },
       (error) => {
         this.toastr.error('Ocurrió un error al obtener la información de préstamos', 'Error');
